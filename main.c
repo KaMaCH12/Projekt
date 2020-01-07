@@ -4,7 +4,7 @@
 #define GameWidth 800
 #define GameHeight 800
 
-void game(sfRenderWindow*);
+void GameLoop(sfRenderWindow*);
 
 sfRenderWindow* window;
 sfEvent event;
@@ -30,7 +30,7 @@ int main()
 	    {
 		if(event.key.code==sfKeyUp)
 		{
-		    game(window);
+		    GameLoop(window);
 		}
 	    }
 	}
