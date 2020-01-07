@@ -8,8 +8,7 @@ void GameLoop(sfRenderWindow*);
 
 sfRenderWindow* window;
 sfEvent event;
-sfSprite* play;
-sfTexture* play_but;
+sfSprite* TitleScreen;
 
 int main()
 {
@@ -17,10 +16,9 @@ int main()
     sfVideoMode mode={GameWidth,GameHeight,32};
 
     window=sfRenderWindow_create(mode,"Space Commander",sfClose,NULL);
-    play=sfSprite_create();
+    TitleScreen=sfSprite_create();
 
-    play_but=sfTexture_createFromFile("statek.png",NULL);
-    sfSprite_setTexture(play,play_but,sfTrue);
+    sfSprite_setTexture(TitleScreen,sfTexture_createFromFile("TitleScreen.png",NULL),sfTrue);
     while(sfRenderWindow_isOpen(window))
     {
 	while (sfRenderWindow_pollEvent(window, &event))
@@ -34,7 +32,7 @@ int main()
 		}
 	    }
 	}
-	sfRenderWindow_drawSprite(window,play,NULL);
+	sfRenderWindow_drawSprite(window,TitleScreen,NULL);
 	sfRenderWindow_display(window);
     }
 }
