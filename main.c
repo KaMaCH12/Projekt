@@ -1,34 +1,57 @@
-#include <stdlib.h>
-#include <gtk/gtk.h>
+#include <SFML/Graphics.h>
+#include <SFML/System.h>
+#include <SFML/System/Clock.h>
 
-#define win_height 800
-#define win_width 800
-
-void win_init()
+int main()
 {
-    GtkWidget *window,*grid;
-    window=gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    grid=gtk_grid_new();
-    
-    for(int i=0;i<win_height;i++)
+    sfEvent event;
+    sfClock* Clock;
+    sfVideoMode mode={800,800,32};
+    sfRenderWindow* window;
+    sfTexture* ship;
+    sfSprite* sprite;
+    sfVector2f pos;
+    pos.x=300;
+    pos.y=400;
+
+    sfVector2f skok;
+    skok.x=0;
+    skok.y=0;
+    sfVector2f gravity;
+
+    gravity.x=0;
+    gravity.y=10;
+
+    Clock =sfClock_create();
+
+    window=sfRenderWindow_create(mode,"Czill utopia",sfClose,NULL);
+    ship=sfTexture_createFromFile("statek.png",NULL);
+    sprite=sfSprite_create();
+    sfSprite_setPosition(sprite,pos);
+    sfSprite_setTexture(sprite,ship,sfTrue);
+    sfRenderWindow_setKeyRepeatEnabled(window,sfFalse);
+
+    while(sfRenderWindow_isOpen(window))
     {
-	gtk_grid_insert_row(grid,i);
-	gtk_grid_insert_column(grid,i);
+	float ElapsedTime=0;
+	sfClock_restart(Clock);
+	while (sfRenderWindow_pollEvent(window, &event))
+	{
+	    if (event.type == sfEvtClosed)sfRenderWindow_close(window);
+	    if (event.type == sfEvtKeyPressed)
+	    {
+		if(event.key.code==sfKeyUp)
+		{
+		    skok.y=-100;
+		}
+	    }
+	}
+	if(skok.y<=-10)skok.y+=10;
+	sfSprite_move(sprite,skok);
+	sfSprite_move(sprite,gravity);
+	sfRenderWindow_clear(window,sfBlack);
+	sfRenderWindow_drawSprite(window,sprite,NULL);
+	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(Clock));
+	sfRenderWindow_display(window);
     }
-
-    gtk_window_set_default_size(GTK_WINDOW(window),win_height,win_width);    
-    gtk_window_set_resizable(GTK_WINDOW(window),FALSE);
-    gtk_container_add (GTK_CONTAINER(window),grid);
-    
-    g_signal_connect (G_OBJECT(window),"destroy",G_CALLBACK(gtk_main_quit),NULL);
-
-    gtk_widget_show(window);
-    gtk_widget_show(grid);
-}
-
-int main(int argc,char *argv[])
-{
-    gtk_init(&argc,&argv);
-    win_init();
-    gtk_main();
 }
