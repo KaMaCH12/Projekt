@@ -2,16 +2,15 @@
 #include <SFML/System.h>
 #include "game.h"
 
-#define GameWidth 800
-#define GameHeight 800
 
-int main()
+void game(sfRenderWindow* window)
 {
-    sfVideoMode mode={GameWidth,GameHeight,32};
+    /*
+    sfVideoMode mode={800,800,32};
     sfRenderWindow* window;
 
     window=sfRenderWindow_create(mode,"Space Commander",sfClose,NULL);
     sfRenderWindow_setKeyRepeatEnabled(window,sfFalse);
-    
+    */
     GameLoop(window);
 }
