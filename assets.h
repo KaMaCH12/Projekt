@@ -23,7 +23,7 @@ player ship_new(float x,float y,int gravity)
     player Statek;
     sfTexture* img;
     Statek.spr=sfSprite_create();
-    img=sfTexture_createFromFile("statek.png",NULL);
+    img=sfTexture_createFromFile("./images/statek.png",NULL);
     sfSprite_setPosition(Statek.spr,vec2d(x,y));
     sfSprite_setTexture(Statek.spr,img,sfTrue);
     Statek.Vspeed=gravity;
