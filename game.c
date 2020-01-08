@@ -57,7 +57,8 @@ void GameLoop(sfRenderWindow* window)
 	if(skalatest==NULL)
 	{
 	    skalatest=asteroid_new(1,800,400,gamespeed/2);
-	    sfSprite_setScale(skalatest->spr,vec2d(3,3));
+	    //sfSprite_setScale(skalatest->spr,vec2d(2,2));
+	    sfSprite_setOrigin(skalatest->spr,vec2d(38,36));
 	}
 
 	//eventy
@@ -79,6 +80,7 @@ void GameLoop(sfRenderWindow* window)
 
 	//ruch asteroid i powerupow
 	if(skalatest!=NULL)sfSprite_move(skalatest->spr,vec2d(-1*(skalatest->Hspeed),0));
+	if(skalatest!=NULL)sfSprite_rotate(skalatest->spr,2);
 
 	//ruch tla
 	sfSprite_move(Background1,vec2d(-gamespeed*2,0));
