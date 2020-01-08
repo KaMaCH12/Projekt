@@ -10,14 +10,21 @@ int gravity=5,gamespeed=10;
 
 void GameLoop(sfRenderWindow* window)
 {
+    int Score_int;
+    char Score_char[1000];
+    sfText* Score;
     sfSprite* Background1;
     sfSprite* Background2;
     sfSprite* Background3;
     sfEvent event;
     sfClock* frame;
+    sfClock* gametime;
     
     player ship=ship_new(200.0,400.0,10);
     frame=sfClock_create();
+    gametime=sfClock_create();
+
+    sfClock_restart(gametime);
     
     Background1=sfSprite_create();
     Background2=sfSprite_create();
@@ -27,13 +34,30 @@ void GameLoop(sfRenderWindow* window)
     sfSprite_setTexture(Background2,sfTexture_createFromFile("./images/Background2.png",NULL),sfTrue);
     sfSprite_setTexture(Background3,sfTexture_createFromFile("./images/Background3.png",NULL),sfTrue);
     
+    //inicjalizacja wyswietlania wyniku
+    Score=sfText_create();
+    sfText_setFont(Score,sfFont_createFromFile("./fonts/dotty.ttf"));
+    sfText_setCharacterSize(Score,120);
+    sfText_move(Score,vec2d(370,-80));
+
+    //test asteroid
+    asteroid* skalatest=NULL;
+
     while(sfRenderWindow_isOpen(window))
     {
 	float ElapsedTime=0;
 	sfClock_restart(frame);
-	sfRenderWindow_clear(window,sfBlack);
-	sfRenderWindow_drawSprite(window,ship.spr,NULL);
 	
+	//aktualizowanie wyniku
+	Score_int=sfTime_asSeconds(sfClock_getElapsedTime(gametime));
+	sprintf(Score_char,"%d",Score_int);
+	sfText_setString(Score,Score_char);
+
+	//generowanie asteroid
+	if(skalatest==NULL)
+	{
+	    skalatest=asteroid_new(1,800,400,gamespeed);
+	}
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))
@@ -53,6 +77,7 @@ void GameLoop(sfRenderWindow* window)
 	if(ship.Vspeed<=0)ship.Vspeed+=gravity;
 
 	//ruch asteroid i powerupow
+	if(skalatest!=NULL)sfSprite_move(skalatest->spr,vec2d(-1*(skalatest->Hspeed),0));
 
 	//ruch tla
 	sfSprite_move(Background1,vec2d(-gamespeed*2,0));
@@ -67,12 +92,24 @@ void GameLoop(sfRenderWindow* window)
 
 	//kolizje
 
+	//usuwanie asteroid z poza planszy
+	//if(sfSprite_getPosition(skalatest->spr).x<-80)
+	//{
+	//    asteroid_destroy(skalatest);
+	//}
+
 	//drawing
+	    //tlo
 	sfRenderWindow_clear(window,sfBlack);
 	sfRenderWindow_drawSprite(window,Background1,NULL);
 	sfRenderWindow_drawSprite(window,Background2,NULL);
 	sfRenderWindow_drawSprite(window,Background3,NULL);
+	    //asteroidy
+	sfRenderWindow_drawSprite(window,skalatest->spr,NULL);
+	    //statek
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
+	    //wynik
+	sfRenderWindow_drawText(window,Score,NULL);
 
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);
