@@ -10,7 +10,7 @@ typedef struct Ship
     float Hspeed;
 }player;
 
-typedef struct skala
+typedef struct asteroid
 {
     sfSprite* spr;
     sfVector2f pos;
@@ -33,19 +33,19 @@ player ship_new(float x,float y,int gravity)
 
 asteroid* asteroid_new(int type,float x,float y,int speed)
 {
-    asteroid* Skala=malloc(sizeof(struct skala));
+    asteroid* Skala=malloc(sizeof(struct asteroid));
     sfTexture* img;
     Skala->spr=sfSprite_create();
     switch(type)
     {
 	case 1:
-	    img=sfTexture_createFromFile("asteroida1.png",NULL);
+	    img=sfTexture_createFromFile("./images/Asteroida1.png",NULL);
 	    break;
 	case 2:
-	    img=sfTexture_createFromFile("asteroida2.png",NULL);
+	    img=sfTexture_createFromFile("./images/Asteroida2.png",NULL);
 	    break;
 	case 3:
-	    img=sfTexture_createFromFile("asteroida3.png",NULL);
+	    img=sfTexture_createFromFile("./images/Asteroida3.png",NULL);
 	    break;
     }
     sfSprite_setPosition(Skala->spr,vec2d(x,y));
@@ -57,6 +57,8 @@ asteroid* asteroid_new(int type,float x,float y,int speed)
 
 void asteroid_destroy(asteroid* skala)
 {
+    sfSprite_destroy(skala->spr);
     free(skala);
+    skala=NULL;
 }
 
