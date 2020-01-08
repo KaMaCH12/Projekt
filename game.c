@@ -1,6 +1,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <SFML/System/Clock.h>
+#include <stdio.h>
 #include "assets.h"
 
 #define JumpForce 50
@@ -13,10 +14,10 @@ void GameLoop(sfRenderWindow* window)
     sfSprite* Background2;
     sfSprite* Background3;
     sfEvent event;
-    sfClock* clock;
+    sfClock* frame;
     
     player ship=ship_new(200.0,400.0,10);
-    clock=sfClock_create();
+    frame=sfClock_create();
     
     Background1=sfSprite_create();
     Background2=sfSprite_create();
@@ -29,7 +30,7 @@ void GameLoop(sfRenderWindow* window)
     while(sfRenderWindow_isOpen(window))
     {
 	float ElapsedTime=0;
-	sfClock_restart(clock);
+	sfClock_restart(frame);
 	sfRenderWindow_clear(window,sfBlack);
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
 	
@@ -73,7 +74,7 @@ void GameLoop(sfRenderWindow* window)
 	sfRenderWindow_drawSprite(window,Background3,NULL);
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
 
-	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));
+	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);
     }
 }

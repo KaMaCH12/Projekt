@@ -20,6 +20,8 @@ int main()
     sfVideoMode mode={GameWidth,GameHeight,32};
 
     window=sfRenderWindow_create(mode,"Space Commander",sfClose,NULL);
+    sfRenderWindow_setKeyRepeatEnabled(window,sfFalse);
+
     TitleScreen=sfSprite_create();
     Background1=sfSprite_create();
     Background2=sfSprite_create();
