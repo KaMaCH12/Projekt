@@ -56,7 +56,8 @@ void GameLoop(sfRenderWindow* window)
 	//generowanie asteroid
 	if(skalatest==NULL)
 	{
-	    skalatest=asteroid_new(1,800,400,gamespeed);
+	    skalatest=asteroid_new(1,800,400,gamespeed/2);
+	    sfSprite_setScale(skalatest->spr,vec2d(3,3));
 	}
 
 	//eventy
@@ -91,6 +92,13 @@ void GameLoop(sfRenderWindow* window)
 	    sfSprite_setPosition(Background3,vec2d(0.0,0.0));
 
 	//kolizje
+	sfFloatRect ship_rect=sfSprite_getGlobalBounds(ship.spr);
+	sfFloatRect asteroid_test=sfSprite_getGlobalBounds(skalatest->spr);
+	if(sfFloatRect_intersects(&ship_rect,&asteroid_test,NULL))
+	{
+	    printf("kolizja");
+	    return;
+	}
 
 	//usuwanie asteroid z poza planszy
 	//if(sfSprite_getPosition(skalatest->spr).x<-80)

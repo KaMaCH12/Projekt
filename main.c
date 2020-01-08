@@ -44,6 +44,7 @@ int main()
 		}
 	    }
 	}
+	sfRenderWindow_clear(window,sfBlack);
 	sfRenderWindow_drawSprite(window,Background1,NULL);
 	sfRenderWindow_drawSprite(window,Background2,NULL);
 	sfRenderWindow_drawSprite(window,Background3,NULL);
