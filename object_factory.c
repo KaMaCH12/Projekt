@@ -17,7 +17,7 @@ player ship_new(sfVector2f position)
     return Statek;
 }
 
-asteroid* make_asteroid(int type,sfVector2f position,int speed)
+asteroid* make_asteroid(int type,sfVector2f position,int speed,int rotation)
 {
     asteroid* ROCK=malloc(sizeof(struct asteroid));
     sfTexture* img;

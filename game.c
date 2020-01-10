@@ -72,11 +72,11 @@ void GameLoop(sfRenderWindow* window)
 	sfSprite_move(Background2,vec2d(-gamespeed,0));
 	sfSprite_move(Background3,vec2d(-gamespeed/4,0));
 	if(sfSprite_getPosition(Background1).x<=-2400)
-	    sfSprite_setPosition(Background1,vec2d(0.0,0.0));
+	    sfSprite_setPosition(Background1,vec2d(0,0));
 	if(sfSprite_getPosition(Background2).x<=-2400)
-	    sfSprite_setPosition(Background2,vec2d(0.0,0.0));
+	    sfSprite_setPosition(Background2,vec2d(0,0));
 	if(sfSprite_getPosition(Background3).x<=-2400)
-	    sfSprite_setPosition(Background3,vec2d(0.0,0.0));
+	    sfSprite_setPosition(Background3,vec2d(0,0));
 
 	//kolizje
 
