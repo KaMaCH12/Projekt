@@ -1,6 +1,11 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
+#define JumpForce 50
+#define gravity 5
+#define gamespeed 10
+
+
 typedef struct Ship
 {
     sfSprite* spr;

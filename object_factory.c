@@ -4,13 +4,13 @@
 #include <stdlib.h>
 #include "extra.h"
 
-player ship_new(float x,float y,int gravity)
+player ship_new(sfVector2f position)
 {
     player Statek;
     sfTexture* img;
     Statek.spr=sfSprite_create();
     img=sfTexture_createFromFile("./images/statek.png",NULL);
-    sfSprite_setPosition(Statek.spr,vec2d(x,y));
+    sfSprite_setPosition(Statek.spr,position);
     sfSprite_setTexture(Statek.spr,img,sfTrue);
     Statek.Vspeed=gravity;
     Statek.Hspeed=0;
@@ -39,4 +39,11 @@ asteroid* make_asteroid(int type,sfVector2f position,int speed)
     ROCK->Vspeed=0;
     ROCK->Hspeed=speed;
     return ROCK;
+}
+
+asteroid* destroy_asteroid(asteroid* ROCK)
+{
+    free(ROCK->spr);
+    free(ROCK);
+    return NULL;
 }

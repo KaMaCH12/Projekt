@@ -4,10 +4,6 @@
 #include <stdio.h>
 #include "object_factory.c"
 
-#define JumpForce 50
-
-int gravity=5,gamespeed=10;
-
 void GameLoop(sfRenderWindow* window)
 {
     int Score_int;
@@ -20,7 +16,7 @@ void GameLoop(sfRenderWindow* window)
     sfClock* frame;
     sfClock* gametime;
     
-    player ship=ship_new(200.0,400.0,10);
+    player ship=ship_new(vec2d(200,400));
     frame=sfClock_create();
     gametime=sfClock_create();
 
