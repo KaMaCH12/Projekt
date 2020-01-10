@@ -2,7 +2,7 @@
 #include <SFML/System.h>
 #include <SFML/System/Clock.h>
 #include <stdio.h>
-#include "assets.h"
+#include "object_factory.c"
 
 #define JumpForce 50
 
@@ -40,9 +40,6 @@ void GameLoop(sfRenderWindow* window)
     sfText_setCharacterSize(Score,120);
     sfText_move(Score,vec2d(370,-80));
 
-    //test asteroid
-    asteroid* skalatest=NULL;
-
     while(sfRenderWindow_isOpen(window))
     {
 	float ElapsedTime=0;
@@ -54,10 +51,6 @@ void GameLoop(sfRenderWindow* window)
 	sfText_setString(Score,Score_char);
 
 	//generowanie asteroid
-	if(skalatest==NULL)
-	{
-	    skalatest=asteroid_new(1,800,400,gamespeed);
-	}
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))
@@ -77,7 +70,6 @@ void GameLoop(sfRenderWindow* window)
 	if(ship.Vspeed<=0)ship.Vspeed+=gravity;
 
 	//ruch asteroid i powerupow
-	if(skalatest!=NULL)sfSprite_move(skalatest->spr,vec2d(-1*(skalatest->Hspeed),0));
 
 	//ruch tla
 	sfSprite_move(Background1,vec2d(-gamespeed*2,0));
@@ -93,10 +85,6 @@ void GameLoop(sfRenderWindow* window)
 	//kolizje
 
 	//usuwanie asteroid z poza planszy
-	//if(sfSprite_getPosition(skalatest->spr).x<-80)
-	//{
-	//    asteroid_destroy(skalatest);
-	//}
 
 	//drawing
 	    //tlo
@@ -104,8 +92,6 @@ void GameLoop(sfRenderWindow* window)
 	sfRenderWindow_drawSprite(window,Background1,NULL);
 	sfRenderWindow_drawSprite(window,Background2,NULL);
 	sfRenderWindow_drawSprite(window,Background3,NULL);
-	    //asteroidy
-	sfRenderWindow_drawSprite(window,skalatest->spr,NULL);
 	    //statek
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
 	    //wynik
