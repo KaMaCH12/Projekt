@@ -2,7 +2,8 @@
 #include <SFML/System.h>
 #include <SFML/System/Clock.h>
 #include <stdio.h>
-#include "object_factory.c"
+#include "extra.h"
+
 
 void GameLoop(sfRenderWindow* window)
 {
@@ -15,17 +16,18 @@ void GameLoop(sfRenderWindow* window)
     sfEvent event;
     sfClock* frame;
     sfClock* gametime;
-    
+
     player ship=ship_new(vec2d(200,400));
     frame=sfClock_create();
     gametime=sfClock_create();
 
     sfClock_restart(gametime);
-    
+   
+
+    //inicjalizacja tła
     Background1=sfSprite_create();
     Background2=sfSprite_create();
     Background3=sfSprite_create();
-
     sfSprite_setTexture(Background1,sfTexture_createFromFile("./images/Background1.png",NULL),sfTrue);
     sfSprite_setTexture(Background2,sfTexture_createFromFile("./images/Background2.png",NULL),sfTrue);
     sfSprite_setTexture(Background3,sfTexture_createFromFile("./images/Background3.png",NULL),sfTrue);
@@ -35,6 +37,10 @@ void GameLoop(sfRenderWindow* window)
     sfText_setFont(Score,sfFont_createFromFile("./fonts/dotty.ttf"));
     sfText_setCharacterSize(Score,120);
     sfText_move(Score,vec2d(370,-80));
+    
+    //inicjalizacja vectora do przechowywania asteroid
+    vector asteroids;
+    vector_init(&asteroids);
 
     while(sfRenderWindow_isOpen(window))
     {
@@ -46,7 +52,8 @@ void GameLoop(sfRenderWindow* window)
 	sprintf(Score_char,"%d",Score_int);
 	sfText_setString(Score,Score_char);
 
-	//generowanie asteroid
+	//generowanie obiektów
+	asteroid_factory(&asteroids);
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))

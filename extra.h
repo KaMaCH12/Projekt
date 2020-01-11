@@ -1,8 +1,9 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
+#include <stdlib.h>
 
-#define JumpForce 50
-#define gravity 5
+#define JumpForce 40
+#define gravity 4 
 #define gamespeed 10
 
 
@@ -20,12 +21,41 @@ typedef struct asteroid
     sfVector2f pos;
     float Vspeed;
     float Hspeed;
+    float Rspeed;
 }asteroid;
 
-sfVector2f vec2d(float x,float y)
+typedef struct vector
 {
-    sfVector2f vec;
-    vec.x=x;
-    vec.y=y;
-    return vec;
-}
+    asteroid **items;
+    int capacity;
+    int total;
+}vector;
+
+void vector_init(vector*);
+
+static void vector_resize(vector*,int);
+
+void vector_add(vector*,asteroid*);
+
+asteroid* vector_get(vector*,int index);
+
+void vector_delete(vector*,int);
+
+sfVector2f vec2d(float,float);
+
+player ship_new(sfVector2f);
+
+void asteroid_factory(vector*);
+/*
+void vector_init(vector *v);
+
+static void vector_resize(vector *v,int capacity);
+
+void vector_add(vector *v,asteroid *item);
+
+asteroid* vector_get(vector *v,int index);
+
+void vector_delete(vector *v, int index);
+
+sfVector2f vec2d(float x,float y);
+*/
