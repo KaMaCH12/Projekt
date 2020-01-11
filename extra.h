@@ -18,6 +18,7 @@ typedef struct Ship
 typedef struct asteroid
 {
     sfSprite* spr;
+    sfTexture* img;
     sfVector2f pos;
     float Vspeed;
     float Hspeed;

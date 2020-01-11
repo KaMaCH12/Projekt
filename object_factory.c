@@ -21,27 +21,26 @@ player ship_new(sfVector2f position)
 asteroid* make_asteroid(int type,sfVector2f position,int speed,int rotation)
 {
     asteroid* ROCK=malloc(sizeof(struct asteroid));
-    sfTexture* img;
     ROCK->spr=sfSprite_create();
     switch(type)
     {
 	case 1:
-	    img=sfTexture_createFromFile("./images/Asteroida1.png",NULL);
+	    ROCK->img=sfTexture_createFromFile("./images/Asteroida1.png",NULL);
 	    sfSprite_setOrigin(ROCK->spr,vec2d(76/2,71/2));
 	    break;
 	case 2:
-	    img=sfTexture_createFromFile("./images/Asteroida2.png",NULL);
+	    ROCK->img=sfTexture_createFromFile("./images/Asteroida2.png",NULL);
 	    sfSprite_setOrigin(ROCK->spr,vec2d(75,50));
 	    break;
 	case 3:
-	    img=sfTexture_createFromFile("./images/Asteroida3.png",NULL);
+	    ROCK->img=sfTexture_createFromFile("./images/Asteroida3.png",NULL);
 	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
 	    break;
     }
     ROCK->Rspeed=rotation;
     sfSprite_setRotation(ROCK->spr,rotation);
     sfSprite_setPosition(ROCK->spr,position);
-    sfSprite_setTexture(ROCK->spr,img,sfTrue);
+    sfSprite_setTexture(ROCK->spr,ROCK->img,sfTrue);
     ROCK->Vspeed=0;
     ROCK->Hspeed=speed;
     return ROCK;
@@ -78,7 +77,8 @@ void asteroid_draw(sfRenderWindow* window,vector* v)
 
 void destroy_asteroid(asteroid* ROCK)
 {
-    free(ROCK->spr);
+    sfTexture_destroy(ROCK->img);
+    sfSprite_destroy(ROCK->spr);
     free(ROCK);
 }
 
