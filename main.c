@@ -1,10 +1,6 @@
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
-
-#define GameWidth 800
-#define GameHeight 800
-
-void GameLoop(sfRenderWindow*);
+#include "main.h"
 
 sfRenderWindow* window;
 sfEvent event;
@@ -44,6 +40,7 @@ int main()
 		}
 	    }
 	}
+	sfRenderWindow_clear(window,sfBlack);
 	sfRenderWindow_drawSprite(window,Background1,NULL);
 	sfRenderWindow_drawSprite(window,Background2,NULL);
 	sfRenderWindow_drawSprite(window,Background3,NULL);

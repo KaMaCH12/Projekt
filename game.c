@@ -2,7 +2,7 @@
 #include <SFML/System.h>
 #include <SFML/System/Clock.h>
 #include <stdio.h>
-#include "extra.h"
+#include "game.h"
 
 
 void GameLoop(sfRenderWindow* window)
@@ -87,6 +87,7 @@ void GameLoop(sfRenderWindow* window)
 	    sfSprite_setPosition(Background3,vec2d(0,0));
 
 	//kolizje
+	if(collision_checker(&asteroids,&ship))break;
 
 	//usuwanie asteroid z poza planszy
 	asteroid_cleaner(&asteroids);
