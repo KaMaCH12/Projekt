@@ -48,6 +48,7 @@ player ship_new(sfVector2f);
 void asteroid_factory(vector*,int);
 void asteroid_move(vector*);
 void asteroid_draw(sfRenderWindow*,vector*);
+void asteroid_cleaner(vector*);
 /*
 void vector_init(vector *v);
 

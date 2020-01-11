@@ -89,6 +89,7 @@ void GameLoop(sfRenderWindow* window)
 	//kolizje
 
 	//usuwanie asteroid z poza planszy
+	asteroid_cleaner(&asteroids);
 
 	//drawing
 	    //tlo
@@ -102,6 +103,11 @@ void GameLoop(sfRenderWindow* window)
 	asteroid_draw(window,&asteroids);
 	    //wynik
 	sfRenderWindow_drawText(window,Score,NULL);
+	    
+
+	//debug
+	printf("%d\n",asteroids.total);
+
 
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);

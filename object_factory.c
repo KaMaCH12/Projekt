@@ -76,9 +76,25 @@ void asteroid_draw(sfRenderWindow* window,vector* v)
     }
 }
 
-asteroid* destroy_asteroid(asteroid* ROCK)
+void destroy_asteroid(asteroid* ROCK)
 {
     free(ROCK->spr);
     free(ROCK);
-    return NULL;
 }
+
+void asteroid_cleaner(vector *v)
+{
+    asteroid* ROCK;
+    sfVector2f position;
+    for(int i=0;i<v->total;i++)
+    {
+	ROCK=v->items[i];
+	if(sfSprite_getPosition(ROCK->spr).x<-100)
+	{
+	    destroy_asteroid(ROCK);
+	    vector_delete(v,i);
+	}
+    }
+    
+}
+
