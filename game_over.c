@@ -29,10 +29,10 @@ void game_over(sfRenderWindow* window,int Score_int,sfFont* font)
     Score=sfText_create();
     sfText_setFont(Score,sfFont_copy(font));
     sfText_setCharacterSize(Score,250);
-    sfText_move(Score,vec2d(370,185));
     char Score_char[1000];
     sprintf(Score_char,"%d",Score_int);
     sfText_setString(Score,Score_char);
+    sfText_setPosition(Score,vec2d(400-sfText_getGlobalBounds(Score).width/2,185));
 
     while(sfRenderWindow_isOpen(window))
     {

@@ -102,12 +102,13 @@ int collision_checker(vector *v,player* SHIP)
     asteroid* ROCK;
     sfFloatRect ship_hitbox;
     sfFloatRect rock_hitbox;
+    sfFloatRect intersection;
     ship_hitbox=sfSprite_getGlobalBounds(SHIP->spr);
     for(int i=0;i<v->total;i++)
     {
 	ROCK=v->items[i];
 	rock_hitbox=sfSprite_getGlobalBounds(ROCK->spr);
-	if(sfFloatRect_intersects(&ship_hitbox,&rock_hitbox,NULL))return 1;
+	if(sfFloatRect_intersects(&ship_hitbox,&rock_hitbox,&intersection))return 1;
     }
     return 0;
 }

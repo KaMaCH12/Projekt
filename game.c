@@ -13,6 +13,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     sfSprite* Background1;
     sfSprite* Background2;
     sfSprite* Background3;
+    sfSprite* Background4;
     sfEvent event;
     sfClock* frame;
     sfClock* gametime;
@@ -28,15 +29,16 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     Background1=sfSprite_create();
     Background2=sfSprite_create();
     Background3=sfSprite_create();
+    Background4=sfSprite_create();
     sfSprite_setTexture(Background1,sfTexture_createFromFile("./images/Background1.png",NULL),sfTrue);
     sfSprite_setTexture(Background2,sfTexture_createFromFile("./images/Background2.png",NULL),sfTrue);
     sfSprite_setTexture(Background3,sfTexture_createFromFile("./images/Background3.png",NULL),sfTrue);
+    sfSprite_setTexture(Background4,sfTexture_createFromFile("./images/Background4.png",NULL),sfTrue);
     
     //inicjalizacja wyswietlania wyniku
     Score=sfText_create();
     sfText_setFont(Score,sfFont_copy(font));
     sfText_setCharacterSize(Score,120);
-    sfText_move(Score,vec2d(370,-80));
     
     //inicjalizacja vectora do przechowywania asteroid
     vector asteroids;
@@ -51,9 +53,10 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	Score_int=sfTime_asSeconds(sfClock_getElapsedTime(gametime));
 	sprintf(Score_char,"%d",Score_int);
 	sfText_setString(Score,Score_char);
+	sfText_setPosition(Score,vec2d(400-sfText_getGlobalBounds(Score).width/2,-80));
 
 	//generowanie obiektów
-	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%25==0)asteroid_factory(&asteroids,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
+	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%50==0)asteroid_factory(&asteroids,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))
@@ -95,9 +98,10 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	//drawing
 	    //tlo
 	sfRenderWindow_clear(window,sfBlack);
-	sfRenderWindow_drawSprite(window,Background1,NULL);
-	sfRenderWindow_drawSprite(window,Background2,NULL);
 	sfRenderWindow_drawSprite(window,Background3,NULL);
+	sfRenderWindow_drawSprite(window,Background1,NULL);
+	sfRenderWindow_drawSprite(window,Background4,NULL);
+	sfRenderWindow_drawSprite(window,Background2,NULL);
 	    //statek
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
 	    //asteroidy
