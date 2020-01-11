@@ -5,7 +5,7 @@
 #include "game.h"
 
 
-void GameLoop(sfRenderWindow* window)
+int GameLoop(sfRenderWindow* window)
 {
     int Score_int;
     char Score_char[1000];
@@ -87,7 +87,7 @@ void GameLoop(sfRenderWindow* window)
 	    sfSprite_setPosition(Background3,vec2d(0,0));
 
 	//kolizje
-	if(collision_checker(&asteroids,&ship))break;
+	if(collision_checker(&asteroids,&ship))return Score_int;
 
 	//usuwanie asteroid z poza planszy
 	asteroid_cleaner(&asteroids);

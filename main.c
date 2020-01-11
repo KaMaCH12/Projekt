@@ -10,6 +10,8 @@ sfSprite* Background1;
 sfSprite* Background2;
 sfSprite* Background3;
 
+int Score_int;
+
 int main()
 {
 
@@ -36,7 +38,7 @@ int main()
 	    {
 		if(event.key.code==sfKeyUp)
 		{
-		    GameLoop(window);
+		    Score_int=GameLoop(window);
 		}
 	    }
 	}
