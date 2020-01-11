@@ -23,6 +23,7 @@ void vector_add(vector *v,asteroid *item)
     {
 	vector_resize(v,v->capacity*2);
     }
+    v->items[v->total++]=item;
 }
 
 asteroid* vector_get(vector *v,int index)

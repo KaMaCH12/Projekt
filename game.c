@@ -53,7 +53,7 @@ void GameLoop(sfRenderWindow* window)
 	sfText_setString(Score,Score_char);
 
 	//generowanie obiektów
-	asteroid_factory(&asteroids);
+	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%25==0)asteroid_factory(&asteroids,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))
@@ -73,6 +73,7 @@ void GameLoop(sfRenderWindow* window)
 	if(ship.Vspeed<=0)ship.Vspeed+=gravity;
 
 	//ruch asteroid i powerupow
+	asteroid_move(&asteroids);
 
 	//ruch tla
 	sfSprite_move(Background1,vec2d(-gamespeed*2,0));
@@ -97,6 +98,8 @@ void GameLoop(sfRenderWindow* window)
 	sfRenderWindow_drawSprite(window,Background3,NULL);
 	    //statek
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
+	    //asteroidy
+	asteroid_draw(window,&asteroids);
 	    //wynik
 	sfRenderWindow_drawText(window,Score,NULL);
 

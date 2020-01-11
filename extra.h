@@ -31,21 +31,23 @@ typedef struct vector
     int total;
 }vector;
 
+//implementacja vectora w C
 void vector_init(vector*);
-
 static void vector_resize(vector*,int);
-
 void vector_add(vector*,asteroid*);
-
 asteroid* vector_get(vector*,int index);
-
 void vector_delete(vector*,int);
 
+//pomocnicze
 sfVector2f vec2d(float,float);
 
+//zarzadzanie graczem
 player ship_new(sfVector2f);
 
-void asteroid_factory(vector*);
+//zarządzanie asteroidami
+void asteroid_factory(vector*,int);
+void asteroid_move(vector*);
+void asteroid_draw(sfRenderWindow*,vector*);
 /*
 void vector_init(vector *v);
 

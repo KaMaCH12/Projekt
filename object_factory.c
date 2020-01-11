@@ -2,6 +2,7 @@
 #include <SFML/System.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "extra.h"
 
 player ship_new(sfVector2f position)
@@ -38,6 +39,7 @@ asteroid* make_asteroid(int type,sfVector2f position,int speed,int rotation)
 	    break;
     }
     ROCK->Rspeed=rotation;
+    sfSprite_setRotation(ROCK->spr,rotation);
     sfSprite_setPosition(ROCK->spr,position);
     sfSprite_setTexture(ROCK->spr,img,sfTrue);
     ROCK->Vspeed=0;
@@ -45,11 +47,33 @@ asteroid* make_asteroid(int type,sfVector2f position,int speed,int rotation)
     return ROCK;
 }
 
-void asteroid_factory(vector* v)
+void asteroid_factory(vector* v,int seed)
+{
+    srand(seed);
+    asteroid* ROCK;
+    ROCK=make_asteroid(rand()%3+1,vec2d(900,rand()%800),gamespeed,(rand()%360));
+    vector_add(v,ROCK);
+}
+
+void asteroid_move(vector* v)
 {
     asteroid* ROCK;
-    ROCK=make_asteroid(1,vec2d(0,0),gamespeed,0);
-    vector_add(v,ROCK);
+    for(int i=0;i<v->total;i++)
+    {
+	ROCK=v->items[i];
+	sfSprite_move(ROCK->spr,vec2d(-ROCK->Hspeed,ROCK->Vspeed));
+	//sfSprite_rotate(ROCK->spr,ROCK->Rspeed);
+    }
+}
+
+void asteroid_draw(sfRenderWindow* window,vector* v)
+{
+    asteroid* ROCK;
+    for(int i=0;i<v->total;i++)
+    {
+	ROCK=v->items[i];
+	sfRenderWindow_drawSprite(window,ROCK->spr,NULL);
+    }
 }
 
 asteroid* destroy_asteroid(asteroid* ROCK)
