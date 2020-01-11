@@ -5,7 +5,7 @@
 #include "game.h"
 
 
-int GameLoop(sfRenderWindow* window)
+int GameLoop(sfRenderWindow* window,sfFont* font)
 {
     int Score_int;
     char Score_char[1000];
@@ -34,7 +34,7 @@ int GameLoop(sfRenderWindow* window)
     
     //inicjalizacja wyswietlania wyniku
     Score=sfText_create();
-    sfText_setFont(Score,sfFont_createFromFile("./fonts/dotty.ttf"));
+    sfText_setFont(Score,sfFont_copy(font));
     sfText_setCharacterSize(Score,120);
     sfText_move(Score,vec2d(370,-80));
     

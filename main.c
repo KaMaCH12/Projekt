@@ -5,6 +5,7 @@
 sfRenderWindow* window;
 sfEvent event;
 sfSprite* TitleScreen;
+sfFont* dotty;
 
 sfSprite* Background1;
 sfSprite* Background2;
@@ -14,6 +15,7 @@ int Score_int;
 
 int main()
 {
+    dotty=sfFont_createFromFile("./fonts/dotty.ttf");
 
     sfVideoMode mode={GameWidth,GameHeight,32};
 
@@ -38,7 +40,8 @@ int main()
 	    {
 		if(event.key.code==sfKeyUp)
 		{
-		    Score_int=GameLoop(window);
+		    Score_int=GameLoop(window,dotty);
+		    game_over(window,Score_int,dotty);
 		}
 	    }
 	}
