@@ -43,7 +43,7 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
     sfText_setFont(Name,sfFont_copy(font));
     sfText_setCharacterSize(Name,250);
     sfText_setString(Name,name);
-    sfText_setPosition(Name,vec2d(400-sfText_getGlobalBounds(Name).width/2,225));
+    sfText_setPosition(Name,vec2d(400-sfText_getGlobalBounds(Name).width/2,400));
 
     while(sfRenderWindow_isOpen(window))
     {
