@@ -15,19 +15,20 @@ typedef struct Ship
     float Hspeed;
 }player;
 
-typedef struct asteroid
+typedef struct object
 {
+    int type;
     sfSprite* spr;
     sfTexture* img;
     sfVector2f pos;
     float Vspeed;
     float Hspeed;
     float Rspeed;
-}asteroid;
+}object;
 
 typedef struct vector
 {
-    asteroid **items;
+    object **items;
     int capacity;
     int total;
 }vector;
@@ -39,8 +40,8 @@ sfVector2f vec2d(float,float);
 //implementacja vectora w C
 void vector_init(vector*);
 static void vector_resize(vector*,int);
-void vector_add(vector*,asteroid*);
-asteroid* vector_get(vector*,int index);
+void vector_add(vector*,object*);
+object* vector_get(vector*,int index);
 void vector_delete(vector*,int);
 
 /*

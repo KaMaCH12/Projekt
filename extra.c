@@ -4,12 +4,12 @@ void vector_init(vector *v)
 {
     v->capacity=4;
     v->total=0;
-    v->items=malloc(sizeof(struct asteroid *)*v->capacity);
+    v->items=malloc(sizeof(struct object *)*v->capacity);
 }
 
 static void vector_resize(vector *v,int capacity)
 {
-    asteroid **items=realloc(v->items, sizeof(struct asteroid *)*capacity);
+    object **items=realloc(v->items, sizeof(struct object *)*capacity);
     if(items)
     {
 	v->items=items;
@@ -17,7 +17,7 @@ static void vector_resize(vector *v,int capacity)
     }
 }
 
-void vector_add(vector *v,asteroid *item)
+void vector_add(vector *v,object *item)
 {
     if(v->capacity == v->total)
     {
@@ -26,7 +26,7 @@ void vector_add(vector *v,asteroid *item)
     v->items[v->total++]=item;
 }
 
-asteroid* vector_get(vector *v,int index)
+object* vector_get(vector *v,int index)
 {
     if(index>=0&&index<v->total)
     {
@@ -66,4 +66,32 @@ sfVector2f vec2d(float x,float y)
     vec.x=x;
     vec.y=y;
     return vec;
+}
+
+int str_length(char* string)
+{
+    int i;
+    for(i=0;string[i]!='\0';i++);
+    return i;
+}
+
+void str_append(char* string,char c)
+{
+     string=realloc(string,sizeof(string)+sizeof(char));
+     string[str_length(string)]=c;
+     string[str_length(string)]='\0';
+}
+
+void str_delete(char* string)
+{
+    /*
+    char newstring[strlen(string)-1];
+    for(int i=0;i<strlen(newstring);i++)
+    {
+	newstring[i]=string[i];
+    }
+    newstring[strlen(newstring)]='\0';
+    string=newstring;
+    */
+    string[str_length(string)]='\0';
 }

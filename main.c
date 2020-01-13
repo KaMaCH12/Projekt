@@ -1,7 +1,10 @@
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
+#include <stdlib.h>
 #include "main.h"
 
+
+char* name;
 sfRenderWindow* window;
 sfEvent event;
 sfSprite* TitleScreen;
@@ -15,6 +18,7 @@ int Score_int;
 
 int main()
 {
+    name=malloc(sizeof(char)*100);
     dotty=sfFont_createFromFile("./fonts/dotty.ttf");
 
     sfVideoMode mode={GameWidth,GameHeight,32};
@@ -41,7 +45,7 @@ int main()
 		if(event.key.code==sfKeyUp)
 		{
 		    Score_int=GameLoop(window,dotty);
-		    game_over(window,Score_int,dotty);
+    		    name=game_over(window,Score_int,dotty,name);
 		}
 	    }
 	}

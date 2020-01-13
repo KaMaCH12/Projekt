@@ -40,9 +40,9 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     sfText_setFont(Score,sfFont_copy(font));
     sfText_setCharacterSize(Score,120);
     
-    //inicjalizacja vectora do przechowywania asteroid
-    vector asteroids;
-    vector_init(&asteroids);
+    //inicjalizacja vectora do przechowywania objektow
+    vector objects;
+    vector_init(&objects);
 
     while(sfRenderWindow_isOpen(window))
     {
@@ -56,7 +56,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	sfText_setPosition(Score,vec2d(400-sfText_getGlobalBounds(Score).width/2,-80));
 
 	//generowanie obiektów
-	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%50==0)asteroid_factory(&asteroids,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
+	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%50==0)asteroid_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))
@@ -76,7 +76,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	if(ship.Vspeed<=0)ship.Vspeed+=gravity;
 
 	//ruch asteroid i powerupow
-	asteroid_move(&asteroids);
+	object_move(&objects);
 
 	//ruch tla
 	sfSprite_move(Background1,vec2d(-gamespeed*2,0));
@@ -90,10 +90,10 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	    sfSprite_setPosition(Background3,vec2d(0,0));
 
 	//kolizje
-	if(collision_checker(&asteroids,&ship))return Score_int;
+	if(collision_checker(&objects,&ship))return Score_int;
 
 	//usuwanie asteroid z poza planszy
-	asteroid_cleaner(&asteroids);
+	object_cleaner(&objects);
 
 	//drawing
 	    //tlo
@@ -104,14 +104,14 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	sfRenderWindow_drawSprite(window,Background2,NULL);
 	    //statek
 	sfRenderWindow_drawSprite(window,ship.spr,NULL);
-	    //asteroidy
-	asteroid_draw(window,&asteroids);
+	    //objekty
+	object_draw(window,&objects);
 	    //wynik
 	sfRenderWindow_drawText(window,Score,NULL);
 	    
 
 	//debug
-	printf("%d\n",asteroids.total);
+	printf("%d\n",objects.total);
 
 
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));

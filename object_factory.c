@@ -18,9 +18,9 @@ player ship_new(sfVector2f position)
     return Statek;
 }
 
-asteroid* make_asteroid(int type,sfVector2f position,int speed,int rotation)
+object* make_object(int type,sfVector2f position,int speed,int rotation)
 {
-    asteroid* ROCK=malloc(sizeof(struct asteroid));
+    object* ROCK=malloc(sizeof(struct object));
     ROCK->spr=sfSprite_create();
     switch(type)
     {
@@ -49,14 +49,14 @@ asteroid* make_asteroid(int type,sfVector2f position,int speed,int rotation)
 void asteroid_factory(vector* v,int seed)
 {
     srand(seed);
-    asteroid* ROCK;
-    ROCK=make_asteroid(rand()%3+1,vec2d(900,rand()%800),gamespeed,(rand()%360));
+    object* ROCK;
+    ROCK=make_object(rand()%3+1,vec2d(900,rand()%800),gamespeed,(rand()%360));
     vector_add(v,ROCK);
 }
 
-void asteroid_move(vector* v)
+void object_move(vector* v)
 {
-    asteroid* ROCK;
+    object* ROCK;
     for(int i=0;i<v->total;i++)
     {
 	ROCK=v->items[i];
@@ -65,9 +65,9 @@ void asteroid_move(vector* v)
     }
 }
 
-void asteroid_draw(sfRenderWindow* window,vector* v)
+void object_draw(sfRenderWindow* window,vector* v)
 {
-    asteroid* ROCK;
+    object* ROCK;
     for(int i=0;i<v->total;i++)
     {
 	ROCK=v->items[i];
@@ -75,23 +75,23 @@ void asteroid_draw(sfRenderWindow* window,vector* v)
     }
 }
 
-void destroy_asteroid(asteroid* ROCK)
+void destroy_object(object* ROCK)
 {
     sfTexture_destroy(ROCK->img);
     sfSprite_destroy(ROCK->spr);
     free(ROCK);
 }
 
-void asteroid_cleaner(vector *v)
+void object_cleaner(vector *v)
 {
-    asteroid* ROCK;
+    object* ROCK;
     sfVector2f position;
     for(int i=0;i<v->total;i++)
     {
 	ROCK=v->items[i];
 	if(sfSprite_getPosition(ROCK->spr).x<-100)
 	{
-	    destroy_asteroid(ROCK);
+	    destroy_object(ROCK);
 	    vector_delete(v,i);
 	}
     }
@@ -99,7 +99,7 @@ void asteroid_cleaner(vector *v)
 
 int collision_checker(vector *v,player* SHIP)
 {
-    asteroid* ROCK;
+    object* ROCK;
     sfFloatRect ship_hitbox;
     sfFloatRect rock_hitbox;
     sfFloatRect intersection;

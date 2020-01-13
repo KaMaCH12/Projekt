@@ -3,4 +3,4 @@
 #define GameHeight 800
 
 int GameLoop(sfRenderWindow*,sfFont*);
-void game_over(sfRenderWindow*,int,sfFont*);
+char* game_over(sfRenderWindow*,int,sfFont*,char*);
