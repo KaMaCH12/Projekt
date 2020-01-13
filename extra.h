@@ -5,10 +5,13 @@
 #define JumpForce 40
 #define gravity 4 
 #define gamespeed 10
+#define ColTolerance 300
 
 
 typedef struct Ship
 {
+    int ammo;
+    int shield;
     sfSprite* spr;
     sfVector2f pos;
     float Vspeed;

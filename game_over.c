@@ -16,6 +16,7 @@ sfText* Name;
 
 char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 {
+    sfRenderWindow_setKeyRepeatEnabled(window,sfTrue);
     GameOverScreen=sfSprite_create();
 
     //inicjalizacja tła
@@ -65,7 +66,7 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 		    }
 		}
 	    }
-	    if(event.type==sfEvtTextEntered&&event.key.code!=sfKeyBackspace)
+	    if(event.type==sfEvtTextEntered&&event.text.unicode!=8)
 	    {
 		int len=str_length(name);
 		if(len<20)

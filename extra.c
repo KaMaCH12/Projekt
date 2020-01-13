@@ -77,21 +77,11 @@ int str_length(char* string)
 
 void str_append(char* string,char c)
 {
-     string=realloc(string,sizeof(string)+sizeof(char));
      string[str_length(string)]=c;
      string[str_length(string)]='\0';
 }
 
 void str_delete(char* string)
-{
-    /*
-    char newstring[strlen(string)-1];
-    for(int i=0;i<strlen(newstring);i++)
-    {
-	newstring[i]=string[i];
-    }
-    newstring[strlen(newstring)]='\0';
-    string=newstring;
-    */
-    string[str_length(string)]='\0';
+{ 
+    string[str_length(string)-1]='\0';
 }

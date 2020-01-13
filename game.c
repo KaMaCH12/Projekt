@@ -111,8 +111,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	    
 
 	//debug
-	printf("%d\n",objects.total);
-
+	printf("%d\n",sfTime_asMilliseconds(sfClock_getElapsedTime(frame)));
 
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);

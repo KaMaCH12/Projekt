@@ -8,6 +8,8 @@
 player ship_new(sfVector2f position)
 {
     player Statek;
+    Statek.ammo=0;
+    Statek.shield=0;
     sfTexture* img;
     Statek.spr=sfSprite_create();
     img=sfTexture_createFromFile("./images/statek.png",NULL);
@@ -27,14 +29,17 @@ object* make_object(int type,sfVector2f position,int speed,int rotation)
 	case 1:
 	    ROCK->img=sfTexture_createFromFile("./images/Asteroida1.png",NULL);
 	    sfSprite_setOrigin(ROCK->spr,vec2d(76/2,71/2));
+	    ROCK->type=1;
 	    break;
 	case 2:
 	    ROCK->img=sfTexture_createFromFile("./images/Asteroida2.png",NULL);
 	    sfSprite_setOrigin(ROCK->spr,vec2d(75,50));
+	    ROCK->type=2;
 	    break;
 	case 3:
 	    ROCK->img=sfTexture_createFromFile("./images/Asteroida3.png",NULL);
 	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
+	    ROCK->type=3;
 	    break;
     }
     ROCK->Rspeed=rotation;
@@ -52,6 +57,14 @@ void asteroid_factory(vector* v,int seed)
     object* ROCK;
     ROCK=make_object(rand()%3+1,vec2d(900,rand()%800),gamespeed,(rand()%360));
     vector_add(v,ROCK);
+}
+
+void powerup_factory(vector* v,int seed)
+{
+    srand(seed);
+    object* OBJ;
+    OBJ=make_object(rand()%2+4,vec2d(900,rand()%800),gamespeed,0);
+    vector_add(v,OBJ);
 }
 
 void object_move(vector* v)
@@ -99,16 +112,19 @@ void object_cleaner(vector *v)
 
 int collision_checker(vector *v,player* SHIP)
 {
-    object* ROCK;
+    object* OBJ;
     sfFloatRect ship_hitbox;
-    sfFloatRect rock_hitbox;
+    sfFloatRect obj_hitbox;
     sfFloatRect intersection;
     ship_hitbox=sfSprite_getGlobalBounds(SHIP->spr);
     for(int i=0;i<v->total;i++)
     {
-	ROCK=v->items[i];
-	rock_hitbox=sfSprite_getGlobalBounds(ROCK->spr);
-	if(sfFloatRect_intersects(&ship_hitbox,&rock_hitbox,&intersection))return 1;
+	OBJ=v->items[i];
+	obj_hitbox=sfSprite_getGlobalBounds(OBJ->spr);
+	if(sfFloatRect_intersects(&ship_hitbox,&obj_hitbox,&intersection))
+	{
+		if(OBJ->type<4&&intersection.width*intersection.height>ColTolerance)return 1;
+	}
     }
     return 0;
 }
