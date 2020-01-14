@@ -4,3 +4,4 @@
 
 int GameLoop(sfRenderWindow*,sfFont*);
 char* game_over(sfRenderWindow*,int,sfFont*,char*);
+void highscores(sfRenderWindow*,sfFont*);
