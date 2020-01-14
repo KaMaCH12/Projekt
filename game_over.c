@@ -54,6 +54,7 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 	    {
 		if(event.key.code==sfKeyUp)
 		{
+		    save_score(name,Score_int);
 		    return name;
 		}
 		if(event.key.code==sfKeyBackspace)

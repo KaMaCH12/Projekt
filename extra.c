@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include "extra.h"
 
 void vector_init(vector *v)
@@ -84,4 +86,73 @@ void str_append(char* string,char c)
 void str_delete(char* string)
 { 
     string[str_length(string)-1]='\0';
+}
+
+void save_score(char* name_src,int score_src)
+{
+    FILE* highscores;
+    FILE* temp;
+    highscores=fopen("./data/highscores.txt","ar+");
+    temp=fopen("./data/temp.txt","w");
+    char name[1000];
+    char score[1000];
+    char a='a';
+    int i=0;
+    int written=0;
+    a=fgetc(highscores);
+    while(a!=EOF)
+    {
+	//wypelnianie stringow z wiersza
+	i=0;
+	while(a!=';')
+	{
+	    name[i]=a;
+	    a=fgetc(highscores);
+	    i++;
+	}
+	name[i]='\0';
+	a=fgetc(highscores);
+	i=0;
+	while(a!=';')
+	{
+	    score[i]=a;
+	    a=fgetc(highscores);
+	    i++;
+	}
+	score[i]='\0';
+	//sprawdzanie czy gracz nie osiagnal juz lepszego wyniku
+	if(strcmp(name,name_src)==0)
+	{
+	    if(strtol(score,NULL,10)>score_src)
+	    {
+		fclose(highscores);
+		fclose(temp);
+		remove("./data/temp.txt");
+		return;
+	    }
+	}
+	//sprawdzanie czy juz dotarlismy na pulap gracza
+	if(strtol(score,NULL,10)<score_src&&written==0)
+	{
+	    written=1;
+	    fprintf(temp,"%s;%d;\n",name_src,score_src);
+	}
+	if(strcmp(name,name_src)!=0)
+	{
+	    fprintf(temp,"%s;%s;\n",name,score);
+	}
+	a=fgetc(highscores);
+	if(a==EOF)break;
+	a=fgetc(highscores);
+    }
+    if(written==0)
+    {
+	fprintf(temp,"%s;%d;\n",name_src,score_src);
+    }
+    //podmiana temp i higscores
+    fclose(highscores);
+    fclose(temp);
+    remove("./data/highscores.txt");
+    rename("./data/temp.txt","./data/highscores.txt");
+    return;
 }

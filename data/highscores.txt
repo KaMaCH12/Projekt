@@ -1,0 +1,3 @@
+Karol;19;
+Dario;9;
+MArek;7;
