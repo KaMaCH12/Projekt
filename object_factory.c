@@ -117,7 +117,7 @@ int collision_checker(vector *v,player* SHIP)
     sfFloatRect obj_hitbox;
     sfFloatRect intersection;
     ship_hitbox=sfSprite_getGlobalBounds(SHIP->spr);
-    if(sfSprite_getPosition(SHIP->spr).y<0||sfSprite_getPosition(SHIP->spr).y>800-ship_hitbox.height)return 1;
+    if(sfSprite_getPosition(SHIP->spr).y+ship_hitbox.height<0||sfSprite_getPosition(SHIP->spr).y>800)return 1;
     for(int i=0;i<v->total;i++)
     {
 	OBJ=v->items[i];
