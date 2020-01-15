@@ -18,7 +18,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     sfClock* frame;
     sfClock* gametime;
 
-    player ship=ship_new(vec2d(200,400));
+    player ship=ship_new(vec2d(100,400));
     sfSprite* ship_shield=sfSprite_create();
     sfSprite* ship_rocket=sfSprite_create();
     sfSprite_setTexture(ship_shield,sfTexture_createFromFile("./images/ShipShield.png",NULL),sfTrue);

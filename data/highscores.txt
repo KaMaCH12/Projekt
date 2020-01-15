@@ -1,6 +1,7 @@
 Autor;243;
 Piotr;104;
 Mariusz Pudzianowski;70;
+Nice;69;
 Pio;55;
 Hacek Jojka;43;
 Bardzo dluga nazwa m;36;
