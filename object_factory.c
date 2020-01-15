@@ -82,9 +82,11 @@ void powerup_factory(vector* v,int seed)
 
 void shoot(vector* v,player* ship)
 {
+    if(ship->ammo==0)return;
     ship->ammo=0;
     sfVector2f pos=sfSprite_getPosition(ship->spr);
-    pos.y+=70;
+    pos.y+=90;
+    pos.x+=70;
     object* OBJ;
     OBJ=make_object(6,pos,-gamespeed/2,0);
     vector_add(v,OBJ);
