@@ -90,6 +90,7 @@ void str_delete(char* string)
 
 void save_score(char* name_src,int score_src)
 {
+    if(strlen(name_src)==0)return;
     FILE* highscores;
     FILE* temp;
     highscores=fopen("./data/highscores.txt","ar+");
@@ -155,4 +156,51 @@ void save_score(char* name_src,int score_src)
     remove("./data/highscores.txt");
     rename("./data/temp.txt","./data/highscores.txt");
     return;
+}
+
+void read_score(char* dst)
+{
+    FILE* highscores;
+    highscores=fopen("./data/highscores.txt","ar+");
+    char a=fgetc(highscores);
+    int i=0;
+    int l=0;
+    while(a!=EOF)
+    {
+	if(a==';')
+	{
+	    a=' ';
+	    l++;
+	    if(l==20)break;
+	}
+	dst[i++]=a;
+	a=fgetc(highscores);
+    }
+    dst[i]='\0';
+    fclose(highscores);
+    return;
+}
+
+void left_right_string(char* src,char* left,char* right)
+{
+    int i=0;
+    int l=0;
+    char a=src[i];
+    while(a!='\0')
+    {
+	if(a==' ')
+	{
+	    l++;
+	    if(l==10)
+	    {
+		char* tmp=left;
+		left=right;
+		right=tmp;
+		l=0;
+	    }
+	}
+	left[i]=a;
+	i++;
+	a=src[i];
+    }
 }
