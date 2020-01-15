@@ -1,4 +1,5 @@
-Hacek Jojka;25;
+Mariusz Pudzianowski;70;
+Hacek Jojka;43;
 OloBolo;24;
 Kreol;21;
 Misczu;20;
@@ -9,6 +10,7 @@ Dario;9;
 Marek;7;
 Krzys;4;
 Test;4;
+D;4;
 Krest;3;
 Kre;1;
 Tes;1;

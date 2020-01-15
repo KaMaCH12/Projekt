@@ -41,6 +41,19 @@ object* make_object(int type,sfVector2f position,int speed,int rotation)
 	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
 	    ROCK->type=3;
 	    break;
+	case 4:
+	    ROCK->img=sfTexture_createFromFile("./images/Shield.png",NULL);
+	    ROCK->type=4;
+	    break;
+	case 5:
+	    ROCK->img=sfTexture_createFromFile("./images/Weapon.png",NULL);
+	    ROCK->type=5;
+	    break;
+	case 6:
+	    ROCK->img=sfTexture_createFromFile("./images/RocketFired.png",NULL);
+	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
+	    ROCK->type=6;
+	    break;
     }
     ROCK->Rspeed=rotation;
     sfSprite_setRotation(ROCK->spr,rotation);
@@ -67,6 +80,16 @@ void powerup_factory(vector* v,int seed)
     vector_add(v,OBJ);
 }
 
+void shoot(vector* v,player* ship)
+{
+    ship->ammo=0;
+    sfVector2f pos=sfSprite_getPosition(ship->spr);
+    pos.y+=70;
+    object* OBJ;
+    OBJ=make_object(6,pos,-gamespeed/2,0);
+    vector_add(v,OBJ);
+}
+
 void object_move(vector* v)
 {
     object* ROCK;
@@ -85,6 +108,27 @@ void object_draw(sfRenderWindow* window,vector* v)
     {
 	ROCK=v->items[i];
 	sfRenderWindow_drawSprite(window,ROCK->spr,NULL);
+    }
+}
+
+void player_draw(sfRenderWindow* window,player* ship,sfSprite* ship_shield,sfSprite* ship_rocket)
+{
+    sfRenderWindow_drawSprite(window,ship->spr,NULL);
+    if(ship->shield>0)
+    {
+	sfVector2f pos=sfSprite_getPosition(ship->spr);
+	pos.x-=3;
+	pos.y-=3;
+	sfSprite_setPosition(ship_shield,pos);
+	sfRenderWindow_drawSprite(window,ship_shield,NULL);
+    }
+    if(ship->ammo>0)
+    {
+	sfVector2f pos=sfSprite_getPosition(ship->spr);
+	pos.y+=28;
+	pos.x+=10;
+	sfSprite_setPosition(ship_rocket,pos);
+	sfRenderWindow_drawSprite(window,ship_rocket,NULL);
     }
 }
 
@@ -107,6 +151,36 @@ void object_cleaner(vector *v)
 	    destroy_object(ROCK);
 	    vector_delete(v,i);
 	}
+	if(sfSprite_getPosition(ROCK->spr).x>900&&ROCK->type==6)
+	{
+	    destroy_object(ROCK);
+	    vector_delete(v,i);
+	}
+    }
+}
+
+void rocket_checker(vector *rockets,vector *objects)
+{
+    object* ROCKET;
+    object* OBJ;
+    sfFloatRect rckt_hitbox;
+    sfFloatRect obj_hitbox;
+    for(int i=0;i<rockets->total;i++)
+    {
+	ROCKET=rockets->items[i];
+	rckt_hitbox=sfSprite_getGlobalBounds(ROCKET->spr);
+	for(int j=0;j<objects->total;j++)
+	{
+	    OBJ=objects->items[j];
+	    obj_hitbox=sfSprite_getGlobalBounds(OBJ->spr);
+	    if(sfFloatRect_intersects(&rckt_hitbox,&obj_hitbox,NULL))
+	    {
+		destroy_object(ROCKET);
+		destroy_object(OBJ);
+		vector_delete(rockets,i);
+		vector_delete(objects,j);
+	    }
+	}
     }
 }
 
@@ -124,7 +198,29 @@ int collision_checker(vector *v,player* SHIP)
 	obj_hitbox=sfSprite_getGlobalBounds(OBJ->spr);
 	if(sfFloatRect_intersects(&ship_hitbox,&obj_hitbox,&intersection))
 	{
-		if(OBJ->type<4&&intersection.width*intersection.height>ColTolerance)return 1;
+		if(OBJ->type<4&&intersection.width*intersection.height>ColTolerance)
+		{
+		    if(SHIP->shield==1)
+		    {
+			destroy_object(OBJ);
+			vector_delete(v,i);
+			SHIP->shield=0;
+		    }
+		    else return 1;
+		}
+		if(OBJ->type==4)
+		{
+		    SHIP->shield=1;
+		    destroy_object(OBJ);
+		    vector_delete(v,i);
+		}
+		if(OBJ->type==5)
+		{
+		    SHIP->ammo=1;
+		    destroy_object(OBJ);
+		    vector_delete(v,i);
+		}
+
 	}
     }
     return 0;

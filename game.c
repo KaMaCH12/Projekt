@@ -19,9 +19,13 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     sfClock* gametime;
 
     player ship=ship_new(vec2d(200,400));
+    sfSprite* ship_shield=sfSprite_create();
+    sfSprite* ship_rocket=sfSprite_create();
+    sfSprite_setTexture(ship_shield,sfTexture_createFromFile("./images/ShipShield.png",NULL),sfTrue);
+    sfSprite_setTexture(ship_rocket,sfTexture_createFromFile("./images/Rocket.png",NULL),sfTrue);
+
     frame=sfClock_create();
     gametime=sfClock_create();
-
     sfClock_restart(gametime);
    
 
@@ -43,6 +47,9 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     //inicjalizacja vectora do przechowywania objektow
     vector objects;
     vector_init(&objects);
+    
+    vector rockets;
+    vector_init(&rockets);
 
     while(sfRenderWindow_isOpen(window))
     {
@@ -57,6 +64,8 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 
 	//generowanie obiektów
 	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%50==0)asteroid_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
+	//generowanie powerupow
+	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%100==0)powerup_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))
@@ -68,6 +77,10 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 		{
 		    ship.Vspeed-=JumpForce;
 		}
+		if(event.key.code==sfKeySpace)
+		{
+		    shoot(&rockets,&ship);
+		}
 	    }
 	}
 
@@ -77,6 +90,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 
 	//ruch asteroid i powerupow
 	object_move(&objects);
+	object_move(&rockets);
 
 	//ruch tla
 	sfSprite_move(Background1,vec2d(-gamespeed*2,0));
@@ -91,9 +105,11 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 
 	//kolizje
 	if(collision_checker(&objects,&ship))return Score_int;
+	rocket_checker(&rockets,&objects);
 
 	//usuwanie asteroid z poza planszy
 	object_cleaner(&objects);
+	object_cleaner(&rockets);
 
 	//drawing
 	    //tlo
@@ -103,15 +119,16 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	sfRenderWindow_drawSprite(window,Background4,NULL);
 	sfRenderWindow_drawSprite(window,Background2,NULL);
 	    //statek
-	sfRenderWindow_drawSprite(window,ship.spr,NULL);
+	player_draw(window,&ship,ship_shield,ship_rocket);
 	    //objekty
 	object_draw(window,&objects);
+	object_draw(window,&rockets);
 	    //wynik
 	sfRenderWindow_drawText(window,Score,NULL);
 	    
 
 	//debug
-	printf("%d\n",sfTime_asMilliseconds(sfClock_getElapsedTime(frame)));
+	printf("%d %d\n",objects.total,rockets.total);
 
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);
