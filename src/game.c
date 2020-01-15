@@ -126,10 +126,6 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	    //wynik
 	sfRenderWindow_drawText(window,Score,NULL);
 	    
-
-	//debug
-	printf("%d %d\n",objects.total,rockets.total);
-
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);
     }

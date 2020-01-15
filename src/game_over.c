@@ -79,7 +79,6 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 		}
 	    }
 	}
-	printf("%s \n",name);
 	//ustawianie pozycji nazwy
 	sfRenderWindow_clear(window,sfBlack);
 	sfRenderWindow_drawSprite(window,Background1,NULL);

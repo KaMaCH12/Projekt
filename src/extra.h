@@ -5,7 +5,7 @@
 #define JumpForce 40
 #define gravity 4 
 #define gamespeed 9
-#define ColTolerance 300
+#define ColTolerance 500
 
 
 typedef struct Ship
