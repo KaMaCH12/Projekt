@@ -4,7 +4,7 @@
 
 #define JumpForce 40
 #define gravity 4 
-#define gamespeed 10
+#define gamespeed 9
 #define ColTolerance 300
 
 

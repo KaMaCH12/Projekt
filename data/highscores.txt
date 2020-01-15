@@ -1,8 +1,11 @@
 Piotr;104;
+Autor;72;
 Mariusz Pudzianowski;70;
+Pio;55;
 Hacek Jojka;43;
 Karol;32;
 OloBolo;24;
+Autor ;23;
 Kreol;21;
 Misczu;20;
 Adam Kaczynski;15;
