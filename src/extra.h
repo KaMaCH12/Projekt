@@ -14,6 +14,7 @@ typedef struct Ship
     int ammo;
     int shield;
     sfSprite* spr;
+    sfTexture* img;
     sfVector2f pos;
     float Vspeed;
     float Hspeed;

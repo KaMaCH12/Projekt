@@ -13,6 +13,7 @@ sfClock* gametime;
 
 //zarzadzanie graczem
 player ship_new(sfVector2f);
+void ship_destroy(player*);
 void player_draw(sfRenderWindow*,player*,sfSprite*,sfSprite*);
 void shoot(vector*,player*);
 

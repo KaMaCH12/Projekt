@@ -10,14 +10,19 @@ player ship_new(sfVector2f position)
     player Statek;
     Statek.ammo=0;
     Statek.shield=0;
-    sfTexture* img;
     Statek.spr=sfSprite_create();
-    img=sfTexture_createFromFile("./images/statek.png",NULL);
+    Statek.img=sfTexture_createFromFile("./images/statek.png",NULL);
     sfSprite_setPosition(Statek.spr,position);
-    sfSprite_setTexture(Statek.spr,img,sfTrue);
+    sfSprite_setTexture(Statek.spr,Statek.img,sfTrue);
     Statek.Vspeed=gravity;
     Statek.Hspeed=0;
     return Statek;
+}
+
+void ship_destroy(player* ship)
+{
+    sfTexture_destroy(ship->img);
+    sfSprite_destroy(ship->spr);
 }
 
 object* make_object(int type,sfVector2f position,int speed,int rotation)

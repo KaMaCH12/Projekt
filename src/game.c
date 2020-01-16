@@ -82,6 +82,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	if(collision_checker(&objects,&ship))
 	{
 	    //destrukcja objektow i rakiet
+	    ship_destroy(&ship);
 	    object_purge(&objects);
 	    object_purge(&rockets);
 	    //przekazanie wyniku

@@ -11,6 +11,7 @@ OloBolo;24;
 Autor ;23;
 Kreol;21;
 Misczu;20;
+Nick;15;
 Vinegret;12;
 Dario;9;
 Marek;7;
