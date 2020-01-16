@@ -7,6 +7,7 @@
 #define gamespeed 9
 #define ColTolerance 500
 
+sfEvent event;
 
 typedef struct Ship
 {
@@ -47,16 +48,6 @@ void vector_add(vector*,object*);
 object* vector_get(vector*,int index);
 void vector_delete(vector*,int);
 
-/*
-void vector_init(vector *v);
-
-static void vector_resize(vector *v,int capacity);
-
-void vector_add(vector *v,asteroid *item);
-
-asteroid* vector_get(vector *v,int index);
-
-void vector_delete(vector *v, int index);
-
-sfVector2f vec2d(float x,float y);
-*/
+//sprzatanie
+void object_purge(vector*);
+void destroy_sprite(sfSprite*);

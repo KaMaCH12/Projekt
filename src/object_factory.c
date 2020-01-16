@@ -141,6 +141,12 @@ void destroy_object(object* ROCK)
     free(ROCK);
 }
 
+void destroy_sprite(sfSprite* OBJ)
+{
+    //sfTexture_destroy(sfSprite_getTexture(OBJ));
+    sfSprite_destroy(OBJ);
+}
+
 void object_cleaner(vector *v)
 {
     object* ROCK;
@@ -158,6 +164,17 @@ void object_cleaner(vector *v)
 	    destroy_object(ROCK);
 	    vector_delete(v,i);
 	}
+    }
+}
+
+void object_purge(vector *v)
+{
+    object* OBJ;
+    for(int i=0;i<v->total;i++)
+    {
+	OBJ=v->items[i];
+	destroy_object(OBJ);
+	vector_delete(v,i);
     }
 }
 

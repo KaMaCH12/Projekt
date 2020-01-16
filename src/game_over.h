@@ -1,5 +1,15 @@
 #include <SFML/Graphics.h>
 
+sfEvent event;
+
+sfSprite* Background1;
+sfSprite* Background2;
+sfSprite* Background3;
+
+sfSprite* GameOverScreen;
+sfText* Name;
+sfText* Score;
+
 sfVector2f vec2d(float,float);
 
 int str_length(char*);

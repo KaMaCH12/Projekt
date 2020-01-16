@@ -1,34 +1,12 @@
 #include <SFML/Graphics.h>
 #include "highscores.h"
 
-sfEvent event;
-sfText* Highscore_entries;
-char Highscore_string[1000];
-char String_left[500];
-char String_right[500];
-
-sfSprite* Highscores;
-sfSprite* Background1;
-sfSprite* Background2;
-sfSprite* Background3;
-
 void highscores(sfRenderWindow* window,sfFont* font)
 {
-    //inicjalizacja planszy highscores
-    Highscores=sfSprite_create();
-    sfSprite_setTexture(Highscores,sfTexture_createFromFile("./images/Highscores.png",NULL),sfTrue);
+    char Highscore_string[1000];
     
-    //inicjalizacja tla
-    Background1=sfSprite_create();
-    Background2=sfSprite_create();
-    Background3=sfSprite_create();
-    sfSprite_setTexture(Background1,sfTexture_createFromFile("./images/Background1.png",NULL),sfTrue);
-    sfSprite_setTexture(Background2,sfTexture_createFromFile("./images/Background2.png",NULL),sfTrue);
-    sfSprite_setTexture(Background3,sfTexture_createFromFile("./images/Background3.png",NULL),sfTrue);
-
-    //inicjalizacja wyswietania poszczegolnych wynikow
+    //przygotowanie wyswietania poszczegolnych wynikow
     read_score(Highscore_string);
-    Highscore_entries=sfText_create();
     sfText_setFont(Highscore_entries,sfFont_copy(font));
     sfText_setCharacterSize(Highscore_entries,60);
     sfText_setString(Highscore_entries,Highscore_string);

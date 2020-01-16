@@ -2,35 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "game_over.h"
-
-sfEvent event;
-sfSprite* GameOverScreen;
-
-sfSprite* Background1;
-sfSprite* Background2;
-sfSprite* Background3;
-
-
-sfText* Score;
-sfText* Name;
+#include "extra.h"
 
 char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 {
     sfRenderWindow_setKeyRepeatEnabled(window,sfTrue);
-    GameOverScreen=sfSprite_create();
-
-    //inicjalizacja tła
-    Background1=sfSprite_create();
-    Background2=sfSprite_create();
-    Background3=sfSprite_create();
-    sfSprite_setTexture(Background1,sfTexture_createFromFile("./images/Background1.png",NULL),sfTrue);
-    sfSprite_setTexture(Background2,sfTexture_createFromFile("./images/Background2.png",NULL),sfTrue);
-    sfSprite_setTexture(Background3,sfTexture_createFromFile("./images/Background3.png",NULL),sfTrue);
     
-    sfSprite_setTexture(GameOverScreen,sfTexture_createFromFile("./images/GameOverScreen.png",NULL),sfTrue);
-
     //inicjalizacja wyswietlania wyniku
-    Score=sfText_create();
     sfText_setFont(Score,sfFont_copy(font));
     sfText_setCharacterSize(Score,250);
     char Score_char[1000];
@@ -39,7 +17,6 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
     sfText_setPosition(Score,vec2d(400-sfText_getGlobalBounds(Score).width/2,185));
 
     //inicjalizacja wprowadzania nazwy
-    Name=sfText_create();
     sfText_setFont(Name,sfFont_copy(font));
     sfText_setCharacterSize(Name,250);
     sfText_setString(Name,name);
