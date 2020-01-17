@@ -28,6 +28,8 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 
     while(sfRenderWindow_isOpen(window))
     {
+	srand(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
+
 	float ElapsedTime=0;
 	sfClock_restart(frame);
 	
@@ -38,9 +40,9 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	sfText_setPosition(Score,vec2d(400-sfText_getGlobalBounds(Score).width/2,-80));
 
 	//generowanie obiektów
-	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%50==0)asteroid_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
+	if(rand()%1000<23)asteroid_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
 	//generowanie powerupow
-	if(sfTime_asMilliseconds(sfClock_getElapsedTime(gametime))%100==0)powerup_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
+	if(rand()%1000<5)powerup_factory(&objects,sfTime_asMilliseconds(sfClock_getElapsedTime(gametime)));
 
 	//eventy
 	while(sfRenderWindow_pollEvent(window, &event))

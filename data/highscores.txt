@@ -1,12 +1,13 @@
 Autor;243;
 Piotr;104;
+Karol L;93;
 Mariusz Pudzianowski;70;
 Nice;69;
+Karol;57;
 Pio;55;
 Hacek Jojka;43;
 marcin;37;
 Bardzo dluga nazwa m;36;
-Karol;32;
 OloBolo;24;
 Autor ;23;
 Kreol;21;
