@@ -1,9 +1,9 @@
 Kozak;2323232323232323;
+Karol;134;
 Piotr;104;
 Karol L;93;
 Mariusz Pudzianowski;70;
 Nice;69;
-Karol;57;
 Pio;55;
 Mati;49;
 Hacek Jojka;43;

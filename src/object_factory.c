@@ -280,8 +280,8 @@ int pixel_perfect_checker(object* OBJ,player* SHIP,sfFloatRect intersection)
 	{
 	    vecA=sfTransform_transformPoint(&invA,vec2d(x,y));
 	    vecB=sfTransform_transformPoint(&invB,vec2d(x,y));
-	    int idxA=((int)vecA.x+((int)vecA.y)*sizeA.x)*4;
-	    int idxB=((int)vecB.x+((int)vecB.y)*sizeB.x)*4;
+	    int idxA=((int)vecA.x+((int)vecA.y)*sizeA.x)*4+3;
+	    int idxB=((int)vecB.x+((int)vecB.y)*sizeB.x)*4+3;
 	    if(vecA.x>0&&vecA.y>0&&vecB.x>0&&vecB.y>0&&vecA.x<sizeA.x&&vecA.y<sizeA.y&&vecB.x<sizeB.x&&vecB.y<sizeB.y&&pixA[idxA]>0&&pixB[idxB]>0)return 1;
 	}
     }
