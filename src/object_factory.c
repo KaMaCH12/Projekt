@@ -33,17 +33,17 @@ object* make_object(int type,sfVector2f position,int speed,int rotation)
     {
 	case 1:
 	    ROCK->img=sfTexture_createFromFile("./images/Asteroida1.png",NULL);
-	    sfSprite_setOrigin(ROCK->spr,vec2d(76/2,71/2));
+//	    sfSprite_setOrigin(ROCK->spr,vec2d(76/2,71/2));
 	    ROCK->type=1;
 	    break;
 	case 2:
 	    ROCK->img=sfTexture_createFromFile("./images/Asteroida2.png",NULL);
-	    sfSprite_setOrigin(ROCK->spr,vec2d(75,50));
+//	    sfSprite_setOrigin(ROCK->spr,vec2d(75,50));
 	    ROCK->type=2;
 	    break;
 	case 3:
 	    ROCK->img=sfTexture_createFromFile("./images/Asteroida3.png",NULL);
-	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
+//	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
 	    ROCK->type=3;
 	    break;
 	case 4:
@@ -72,7 +72,7 @@ void asteroid_factory(vector* v,int seed)
 {
     srand(seed);
     object* ROCK;
-    ROCK=make_object(rand()%3+1,vec2d(900,rand()%800),gamespeed,(rand()%360));
+    ROCK=make_object(rand()%3+1,vec2d(1000,rand()%700),gamespeed,(rand()%360));
     vector_add(v,ROCK);
 }
 
@@ -158,7 +158,7 @@ void object_cleaner(vector *v)
     for(int i=0;i<v->total;i++)
     {
 	ROCK=v->items[i];
-	if(sfSprite_getPosition(ROCK->spr).x<-100)
+	if(sfSprite_getPosition(ROCK->spr).x<-150)
 	{
 	    destroy_object(ROCK);
 	    vector_delete(v,i);
@@ -207,6 +207,8 @@ void rocket_checker(vector *rockets,vector *objects)
     }
 }
 
+int pixel_perfect_checker(object*,player*,sfFloatRect);
+
 int collision_checker(vector *v,player* SHIP)
 {
     object* OBJ;
@@ -221,7 +223,7 @@ int collision_checker(vector *v,player* SHIP)
 	obj_hitbox=sfSprite_getGlobalBounds(OBJ->spr);
 	if(sfFloatRect_intersects(&ship_hitbox,&obj_hitbox,&intersection))
 	{
-		if(OBJ->type<4&&intersection.width*intersection.height>ColTolerance)
+		if(OBJ->type<4&&pixel_perfect_checker(OBJ,SHIP,intersection)==1)
 		{
 		    if(SHIP->shield==1)
 		    {
@@ -244,6 +246,43 @@ int collision_checker(vector *v,player* SHIP)
 		    vector_delete(v,i);
 		}
 
+	}
+    }
+    return 0;
+}
+
+int pixel_perfect_checker(object* OBJ,player* SHIP,sfFloatRect intersection)
+{
+    int xMax=intersection.left+intersection.width;
+    int yMax=intersection.top+intersection.height;
+    
+    sfImage* imgA=sfTexture_copyToImage(SHIP->img);
+    sfImage* imgB=sfTexture_copyToImage(OBJ->img);
+
+    const sfVector2u sizeA=sfImage_getSize(imgA);
+    const sfVector2u sizeB=sfImage_getSize(imgB);
+    
+    const sfUint8* pixA;
+    const sfUint8* pixB;
+    
+    pixA=sfImage_getPixelsPtr(imgA);
+    pixB=sfImage_getPixelsPtr(imgB);
+    
+    sfVector2f vecA,vecB;
+
+    const sfTransform invA=sfSprite_getInverseTransform(SHIP->spr);
+    const sfTransform invB=sfSprite_getInverseTransform(OBJ->spr);
+
+    //sprawdzanie czy piksele sie nakladaja
+    for(int x=intersection.left;x<xMax;x++)
+    {
+	for(int y=intersection.top;y<yMax;y++)
+	{
+	    vecA=sfTransform_transformPoint(&invA,vec2d(x,y));
+	    vecB=sfTransform_transformPoint(&invB,vec2d(x,y));
+	    int idxA=((int)vecA.x+((int)vecA.y)*sizeA.x)*4;
+	    int idxB=((int)vecB.x+((int)vecB.y)*sizeB.x)*4;
+	    if(vecA.x>0&&vecA.y>0&&vecB.x>0&&vecB.y>0&&vecA.x<sizeA.x&&vecA.y<sizeA.y&&vecB.x<sizeB.x&&vecB.y<sizeB.y&&pixA[idxA]>0&&pixB[idxB]>0)return 1;
 	}
     }
     return 0;

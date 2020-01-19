@@ -83,6 +83,12 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	//kolizje
 	if(collision_checker(&objects,&ship))
 	{
+	    //przerwa dla debugu
+	    sfRenderWindow_clear(window,sfBlack);
+	    player_draw(window,&ship,ship_shield,ship_rocket);
+	    object_draw(window,&objects);
+	    sfRenderWindow_display(window);
+	    while(sfTime_asSeconds(sfClock_getElapsedTime(frame))<1);
 	    //destrukcja objektow i rakiet
 	    ship_destroy(&ship);
 	    object_purge(&objects);
