@@ -180,27 +180,3 @@ void read_score(char* dst)
     fclose(highscores);
     return;
 }
-
-void left_right_string(char* src,char* left,char* right)
-{
-    int i=0;
-    int l=0;
-    char a=src[i];
-    while(a!='\0')
-    {
-	if(a==' ')
-	{
-	    l++;
-	    if(l==10)
-	    {
-		char* tmp=left;
-		left=right;
-		right=tmp;
-		l=0;
-	    }
-	}
-	left[i]=a;
-	i++;
-	a=src[i];
-    }
-}

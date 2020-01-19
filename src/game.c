@@ -54,7 +54,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 		{
 		    ship.Vspeed-=JumpForce;
 		}
-		if(event.key.code==sfKeySpace)
+		if(event.key.code==sfKeyDown)
 		{
 		    shoot(&rockets,&ship);
 		}
@@ -87,6 +87,8 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	    ship_destroy(&ship);
 	    object_purge(&objects);
 	    object_purge(&rockets);
+	    free(objects.items);
+	    free(rockets.items);
 	    //przekazanie wyniku
 	    return Score_int;
 	}

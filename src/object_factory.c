@@ -56,7 +56,6 @@ object* make_object(int type,sfVector2f position,int speed,int rotation)
 	    break;
 	case 6:
 	    ROCK->img=sfTexture_createFromFile("./images/RocketFired.png",NULL);
-	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
 	    ROCK->type=6;
 	    break;
     }
@@ -249,4 +248,3 @@ int collision_checker(vector *v,player* SHIP)
     }
     return 0;
 }
-

@@ -4,34 +4,33 @@
 #include "main.h"
 #include "extra.h"
 
-//zmienne ogolne
-sfEvent event;
-sfText* Score;
-sfSprite* Background1;
-sfSprite* Background2;
-sfSprite* Background3;
+    //zmienne ogolne
+    sfEvent event;
+    sfText* Score;
+    sfSprite* Background1;
+    sfSprite* Background2;
+    sfSprite* Background3;
 
-//highscores.c
-sfSprite* Highscores;
-sfText* Highscore_entries;
+    //highscores.c
+    sfSprite* Highscores;
+    sfText* Highscore_entries;
 
-//game.c
-sfSprite* Background4;
-sfSprite* ship_shield;
-sfSprite* ship_rocket;
-sfClock* frame;
-sfClock* gametime;
+    //game.c
+    sfSprite* Background4;
+    sfSprite* ship_shield;
+    sfSprite* ship_rocket;
+    sfClock* frame;
+    sfClock* gametime;
 
-//game_over.c
-sfSprite* GameOverScreen;
-sfText* Name;
-
+    //game_over.c
+    sfSprite* GameOverScreen;
+    sfText* Name;
 
 int main()
 {
+
     char* name;
     sfRenderWindow* window;
-    sfEvent event;
     sfSprite* TitleScreen;
     sfFont* dotty;
     int Score_int;
@@ -84,7 +83,8 @@ int main()
 	while (sfRenderWindow_pollEvent(window, &event))
 	{
 	    if (event.type == sfEvtClosed)
-	    {	
+	    {
+		free(name);
 		sfRenderWindow_close(window);
 	    }
 	    if (event.type == sfEvtKeyPressed)
