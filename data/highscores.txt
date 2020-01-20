@@ -1,15 +1,13 @@
-Kozak;2323232323232323;
 Karol;134;
 Piotr;104;
 Karol L;93;
 Mariusz Pudzianowski;70;
-Nice;69;
 Pio;55;
 Mati;49;
 Hacek Jojka;43;
 marcin;37;
 Bardzo dluga nazwa m;36;
-Pio;31;
+Pio;31;
 OloBolo;24;
 Game over;24;
 Autor ;23;
