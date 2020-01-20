@@ -28,8 +28,7 @@
 
 int main()
 {
-
-    char* name;
+    char* name=NULL;
     sfRenderWindow* window;
     sfSprite* TitleScreen;
     sfFont* dotty;

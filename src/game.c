@@ -16,7 +16,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     sfClock_restart(gametime);
     
     //inicjalizacja wyswietlania wyniku
-    sfText_setFont(Score,sfFont_copy(font));
+    sfText_setFont(Score,font);
     sfText_setCharacterSize(Score,120);
     
     //inicjalizacja vectora do przechowywania objektow

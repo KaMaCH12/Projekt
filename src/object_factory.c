@@ -163,7 +163,7 @@ void object_cleaner(vector *v)
 	    destroy_object(ROCK);
 	    vector_delete(v,i);
 	}
-	if(sfSprite_getPosition(ROCK->spr).x>900&&ROCK->type==6)
+	else if(sfSprite_getPosition(ROCK->spr).x>900&&ROCK->type==6)
 	{
 	    destroy_object(ROCK);
 	    vector_delete(v,i);
@@ -282,8 +282,15 @@ int pixel_perfect_checker(object* OBJ,player* SHIP,sfFloatRect intersection)
 	    vecB=sfTransform_transformPoint(&invB,vec2d(x,y));
 	    int idxA=((int)vecA.x+((int)vecA.y)*sizeA.x)*4+3;
 	    int idxB=((int)vecB.x+((int)vecB.y)*sizeB.x)*4+3;
-	    if(vecA.x>0&&vecA.y>0&&vecB.x>0&&vecB.y>0&&vecA.x<sizeA.x&&vecA.y<sizeA.y&&vecB.x<sizeB.x&&vecB.y<sizeB.y&&pixA[idxA]>0&&pixB[idxB]>0)return 1;
+	    if(vecA.x>0&&vecA.y>0&&vecB.x>0&&vecB.y>0&&vecA.x<sizeA.x&&vecA.y<sizeA.y&&vecB.x<sizeB.x&&vecB.y<sizeB.y&&pixA[idxA]>0&&pixB[idxB]>0)
+	    {
+		sfImage_destroy(imgA);
+		sfImage_destroy(imgB);
+		return 1;
+	    }
 	}
     }
+    sfImage_destroy(imgA);
+    sfImage_destroy(imgB);
     return 0;
 }

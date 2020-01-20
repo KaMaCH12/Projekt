@@ -1,4 +1,5 @@
 Karol;134;
+Adamuro;118;
 Piotr;104;
 Karol L;93;
 Mariusz Pudzianowski;70;
@@ -14,6 +15,7 @@ Autor ;23;
 Adam;22;
 Kreol;21;
 Misczu;20;
+Nowa nazwa;18;
 Nick;15;
 Vinegret;12;
 Karolo;10;
