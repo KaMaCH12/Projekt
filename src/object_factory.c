@@ -27,7 +27,7 @@ void ship_destroy(player* ship)
 
 object* make_object(int type,sfVector2f position,int speed,int rotation)
 {
-    object* ROCK=malloc(sizeof(struct object));
+    object* ROCK=malloc(sizeof(object));
     ROCK->spr=sfSprite_create();
     switch(type)
     {
@@ -154,19 +154,18 @@ void destroy_sprite(sfSprite* OBJ)
 void object_cleaner(vector *v)
 {
     object* ROCK;
-    sfVector2f position;
     for(int i=0;i<v->total;i++)
     {
 	ROCK=v->items[i];
 	if(sfSprite_getPosition(ROCK->spr).x<-150)
 	{
-	    destroy_object(ROCK);
 	    vector_delete(v,i);
+	    destroy_object(ROCK);
 	}
 	else if(sfSprite_getPosition(ROCK->spr).x>900&&ROCK->type==6)
 	{
-	    destroy_object(ROCK);
 	    vector_delete(v,i);
+	    destroy_object(ROCK);
 	}
     }
 }

@@ -18,6 +18,7 @@ Misczu;20;
 Nowa nazwa;18;
 Nick;15;
 Vinegret;12;
+Elon12;11;
 Karolo;10;
 Dario;9;
 Marek;7;

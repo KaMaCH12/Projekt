@@ -1,4 +1,5 @@
 #include <SFML/Graphics.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "game_over.h"
@@ -24,6 +25,7 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 
     while(sfRenderWindow_isOpen(window))
     {
+	int len=str_length(name);
 	while(sfRenderWindow_pollEvent(window,&event))
 	{
 	    if(event.type==sfEvtClosed)sfRenderWindow_close(window);
@@ -49,17 +51,29 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 	    }
 	    if(event.type==sfEvtTextEntered&&event.text.unicode!=8)
 	    {
-		int len=str_length(name);
+		char a=event.text.unicode;
+		//sprawdzanie czy jest to dozwolony znak
+		if(!isalpha((int)a)&&!isdigit((int)a)&&(int)a!=95)break;
+		//jezeli dlugosc nazwy jest mniejsza niz 20 znakow dodaj znak
 		if(len<20)
 		{
-		    char a=event.text.unicode;
 		    str_append(name,a);
 		    sfText_setString(Name,name);
 		    sfText_setPosition(Name,vec2d(400-sfText_getGlobalBounds(Name).width/2,400));
 		}
 	    }
 	}
-	//ustawianie pozycji nazwy
+	//ustawianie rozmiaru nazwy
+	if(len<10)
+	{
+	    sfText_setCharacterSize(Name,250);
+	    sfText_setPosition(Name,vec2d(400-sfText_getGlobalBounds(Name).width/2,400));
+	}
+	else
+	{
+	    sfText_setCharacterSize(Name,250-6*len);
+	    sfText_setPosition(Name,vec2d(400-sfText_getGlobalBounds(Name).width/2,400+6*len));
+	}
 	sfRenderWindow_clear(window,sfBlack);
 	sfRenderWindow_drawSprite(window,Background1,NULL);
 	sfRenderWindow_drawSprite(window,Background2,NULL);
