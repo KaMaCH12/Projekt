@@ -9,6 +9,8 @@ sfSprite* Background3;
 sfSprite* GameOverScreen;
 sfText* Name;
 sfText* Score;
+sfText* Warning;
+sfClock* WarningTimer;
 
 sfVector2f vec2d(float,float);
 

@@ -21,6 +21,7 @@ Vinegret;12;
 Elon12;11;
 Karolo;10;
 Dario;9;
+Nazwa;9;
 Marek;7;
 karol;6;
 Krzys;4;

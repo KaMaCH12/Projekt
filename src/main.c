@@ -25,6 +25,8 @@
     //game_over.c
     sfSprite* GameOverScreen;
     sfText* Name;
+    sfText* Warning;
+    sfClock* WarningTimer;
 
 int main()
 {
@@ -57,6 +59,7 @@ int main()
     frame=sfClock_create();
     gametime=sfClock_create();
     Score=sfText_create();
+    sfText_setFont(Score,dotty);
     ship_shield=sfSprite_create();
     ship_rocket=sfSprite_create();
     sfSprite_setTexture(ship_shield,sfTexture_createFromFile("./images/ShipShield.png",NULL),sfTrue);
@@ -66,6 +69,11 @@ int main()
     GameOverScreen=sfSprite_create();
     sfSprite_setTexture(GameOverScreen,sfTexture_createFromFile("./images/GameOverScreen.png",NULL),sfTrue); 
     Name=sfText_create();
+    Warning=sfText_create();
+    sfText_setFont(Warning,dotty);
+    sfText_setFont(Name,dotty);
+    sfText_setColor(Warning,sfRed);
+    WarningTimer=sfClock_create();
 
     //inicjalizacja tla
     Background1=sfSprite_create();
