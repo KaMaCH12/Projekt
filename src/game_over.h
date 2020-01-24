@@ -11,6 +11,7 @@ sfText* Name;
 sfText* Score;
 sfText* Warning;
 sfClock* WarningTimer;
+sfClock* CursorTimer;
 
 sfVector2f vec2d(float,float);
 

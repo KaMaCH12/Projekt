@@ -27,6 +27,7 @@
     sfText* Name;
     sfText* Warning;
     sfClock* WarningTimer;
+    sfClock* CursorTimer;
 
 int main()
 {
@@ -74,6 +75,7 @@ int main()
     sfText_setFont(Name,dotty);
     sfText_setColor(Warning,sfRed);
     WarningTimer=sfClock_create();
+    CursorTimer=sfClock_create();
 
     //inicjalizacja tla
     Background1=sfSprite_create();

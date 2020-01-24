@@ -25,11 +25,14 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
     sfText_setCharacterSize(Warning,100);
     sfText_setString(Warning,"invalid character");
     sfText_setPosition(Warning,vec2d(400-sfText_getGlobalBounds(Warning).width/2,650));
-
+    
+    //zmienne do obslugi cursora i warninga
+    int disp_cursor=0;
+    int disp_warning=0;
+    
     while(sfRenderWindow_isOpen(window))
     {
 	int len=str_length(name);
-	int disp_warning;
 	while(sfRenderWindow_pollEvent(window,&event))
 	{
 	    if(event.type==sfEvtClosed)sfRenderWindow_close(window);
@@ -70,6 +73,21 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 		    sfText_setString(Name,name);
 		    sfText_setPosition(Name,vec2d(400-sfText_getGlobalBounds(Name).width/2,400));
 		}
+	    }
+	}
+	//wyswietlanie cursora
+	if(len<1&&sfTime_asMilliseconds(sfClock_getElapsedTime(CursorTimer))>500)
+	{
+	    sfClock_restart(CursorTimer);
+	    if(disp_cursor)
+	    {
+		sfText_setString(Name,"*");
+		disp_cursor=0;
+	    }
+	    else
+	    {
+		sfText_setString(Name,name);
+		disp_cursor=1;
 	    }
 	}
 	//sprawdzanie jak dlugo wyswietla sie warning
