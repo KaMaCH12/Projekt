@@ -16,6 +16,7 @@ Adam;22;
 Kreol;21;
 Misczu;20;
 Nowa nazwa;18;
+Olo;17;
 Nick;15;
 Vinegret;12;
 Elon12;11;

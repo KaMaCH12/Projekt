@@ -6,6 +6,7 @@ sfSprite* Background2;
 sfSprite* Background3;
 sfSprite* Background4;
 sfSprite* ship_shield;
+sfSprite* ship_boom;
 sfSprite* ship_rocket;
 sfClock* frame;
 sfClock* gametime;

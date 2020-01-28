@@ -17,6 +17,7 @@
 
     //game.c
     sfSprite* Background4;
+    sfSprite* ship_boom;
     sfSprite* ship_shield;
     sfSprite* ship_rocket;
     sfClock* frame;
@@ -63,8 +64,10 @@ int main()
     sfText_setFont(Score,dotty);
     ship_shield=sfSprite_create();
     ship_rocket=sfSprite_create();
+    ship_boom=sfSprite_create();
     sfSprite_setTexture(ship_shield,sfTexture_createFromFile("./images/ShipShield.png",NULL),sfTrue);
     sfSprite_setTexture(ship_rocket,sfTexture_createFromFile("./images/Rocket.png",NULL),sfTrue);
+    sfSprite_setTexture(ship_boom,sfTexture_createFromFile("./images/wybuch.png",NULL),sfTrue);
 
     //inicjalizacja GameOver
     GameOverScreen=sfSprite_create();

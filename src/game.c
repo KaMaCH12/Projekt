@@ -85,6 +85,15 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	{
 	    //przerwa dla debugu
 	    sfRenderWindow_clear(window,sfBlack);
+	    sfRenderWindow_drawSprite(window,Background3,NULL);
+	    sfRenderWindow_drawSprite(window,Background1,NULL);
+	    sfRenderWindow_drawSprite(window,Background4,NULL);
+	    sfRenderWindow_drawSprite(window,Background2,NULL);
+	    sfVector2f boom_pos=sfSprite_getPosition(ship.spr);
+	    boom_pos.x-=60;
+	    boom_pos.y-=90;
+	    sfSprite_setPosition(ship_boom,boom_pos);
+	    sfRenderWindow_drawSprite(window,ship_boom,NULL);
 	    player_draw(window,&ship,ship_shield,ship_rocket);
 	    object_draw(window,&objects);
 	    sfRenderWindow_display(window);
