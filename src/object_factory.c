@@ -14,6 +14,7 @@ player ship_new(sfVector2f position)
     Statek.img=sfTexture_createFromFile("./images/statek.png",NULL);
     sfSprite_setPosition(Statek.spr,position);
     sfSprite_setTexture(Statek.spr,Statek.img,sfTrue);
+    sfSprite_setOrigin(Statek.spr,vec2d(40,15));
     Statek.Vspeed=gravity;
     Statek.Hspeed=0;
     return Statek;
@@ -119,20 +120,19 @@ void object_draw(sfRenderWindow* window,vector* v)
 
 void player_draw(sfRenderWindow* window,player* ship,sfSprite* ship_shield,sfSprite* ship_rocket)
 {
+    sfSprite_setRotation(ship->spr,ship->Vspeed-4);
     sfRenderWindow_drawSprite(window,ship->spr,NULL);
     if(ship->shield>0)
     {
+	sfSprite_setRotation(ship_shield,ship->Vspeed-4);
 	sfVector2f pos=sfSprite_getPosition(ship->spr);
-	pos.x-=3;
-	pos.y-=3;
 	sfSprite_setPosition(ship_shield,pos);
 	sfRenderWindow_drawSprite(window,ship_shield,NULL);
     }
     if(ship->ammo>0)
     {
+	sfSprite_setRotation(ship_rocket,ship->Vspeed-4);
 	sfVector2f pos=sfSprite_getPosition(ship->spr);
-	pos.y+=28;
-	pos.x+=10;
 	sfSprite_setPosition(ship_rocket,pos);
 	sfRenderWindow_drawSprite(window,ship_rocket,NULL);
     }
@@ -215,7 +215,7 @@ int collision_checker(vector *v,player* SHIP)
     sfFloatRect obj_hitbox;
     sfFloatRect intersection;
     ship_hitbox=sfSprite_getGlobalBounds(SHIP->spr);
-    if(sfSprite_getPosition(SHIP->spr).y+ship_hitbox.height<0||sfSprite_getPosition(SHIP->spr).y>800)return 1;
+    if(sfSprite_getPosition(SHIP->spr).y+ship_hitbox.height < 20||sfSprite_getPosition(SHIP->spr).y>830)return 1;
     for(int i=0;i<v->total;i++)
     {
 	OBJ=v->items[i];

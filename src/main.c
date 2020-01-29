@@ -65,6 +65,9 @@ int main()
     ship_shield=sfSprite_create();
     ship_rocket=sfSprite_create();
     ship_boom=sfSprite_create();
+    sfSprite_setOrigin(ship_shield,vec2d(43,17));
+    sfSprite_setOrigin(ship_rocket,vec2d(43,-13));
+    sfSprite_setOrigin(ship_boom,vec2d(103,103));
     sfSprite_setTexture(ship_shield,sfTexture_createFromFile("./images/ShipShield.png",NULL),sfTrue);
     sfSprite_setTexture(ship_rocket,sfTexture_createFromFile("./images/Rocket.png",NULL),sfTrue);
     sfSprite_setTexture(ship_boom,sfTexture_createFromFile("./images/wybuch.png",NULL),sfTrue);

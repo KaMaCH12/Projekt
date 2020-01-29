@@ -63,6 +63,7 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 
 	//ruch statku
 	sfSprite_move(ship.spr,vec2d(ship.Hspeed,ship.Vspeed));
+	sfSprite_setRotation(ship.spr,ship.Vspeed-4);
 	if(ship.Vspeed<=0)ship.Vspeed+=gravity;
 
 	//ruch asteroid i powerupow
@@ -90,8 +91,6 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	    sfRenderWindow_drawSprite(window,Background4,NULL);
 	    sfRenderWindow_drawSprite(window,Background2,NULL);
 	    sfVector2f boom_pos=sfSprite_getPosition(ship.spr);
-	    boom_pos.x-=60;
-	    boom_pos.y-=90;
 	    sfSprite_setPosition(ship_boom,boom_pos);
 	    sfRenderWindow_drawSprite(window,ship_boom,NULL);
 	    player_draw(window,&ship,ship_shield,ship_rocket);
