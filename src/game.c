@@ -25,6 +25,8 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
     
     vector rockets;
     vector_init(&rockets);
+    
+    sfRenderWindow_setKeyRepeatEnabled(window,sfFalse);
 
     while(sfRenderWindow_isOpen(window))
     {
@@ -130,4 +132,5 @@ int GameLoop(sfRenderWindow* window,sfFont* font)
 	while(ElapsedTime<17)ElapsedTime = sfTime_asMilliseconds(sfClock_getElapsedTime(frame));
 	sfRenderWindow_display(window);
     }
+    return 0;
 }

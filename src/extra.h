@@ -44,7 +44,7 @@ sfVector2f vec2d(float,float);
 
 //implementacja vectora w C
 void vector_init(vector*);
-static void vector_resize(vector*,int);
+void vector_resize(vector*,int);
 void vector_add(vector*,object*);
 object* vector_get(vector*,int index);
 void vector_delete(vector*,int);
