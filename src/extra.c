@@ -9,7 +9,7 @@ void vector_init(vector *v)
     v->items=malloc(sizeof(struct object *)*v->capacity);
 }
 
-static void vector_resize(vector *v,int capacity)
+void vector_resize(vector *v,int capacity)
 {
     object **items=realloc(v->items, sizeof(struct object *)*capacity);
     if(items)

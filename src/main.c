@@ -107,7 +107,7 @@ int main()
 		if(event.key.code==sfKeyUp)
 		{
 		    Score_int=GameLoop(window,dotty);
-    		    name=game_over(window,Score_int,dotty,name);
+    		    name=game_over(window,Score_int,name);
 		}
 		if(event.key.code==sfKeyDown)
 		{

@@ -5,7 +5,7 @@
 #include "game_over.h"
 #include "extra.h"
 
-char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
+char* game_over(sfRenderWindow* window,int Score_int,char* name)
 {
     sfRenderWindow_setKeyRepeatEnabled(window,sfTrue);
     
@@ -116,4 +116,5 @@ char* game_over(sfRenderWindow* window,int Score_int,sfFont* font,char* name)
 	if(disp_warning)sfRenderWindow_drawText(window,Warning,NULL);
 	sfRenderWindow_display(window);
     }
+    return 0;
 }
