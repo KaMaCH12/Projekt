@@ -1,4 +1,4 @@
-Karol;134;
+Karol;231;
 Adamuro;118;
 Piotr;104;
 Karol L;93;

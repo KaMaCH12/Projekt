@@ -18,7 +18,10 @@ https://www.ascii-art-generator.org/
 Kompilacja =>
 
 Projekt do kompilacji wymaga gcc 9.2.0, csfml 2.5 oraz sfml 2.5
-Aby skompilowac projekt można wykorzystac skrypt w pliku install.sh
+Aby skompilowac projekt można użyć
+```
+make
+```
 
 Rozgrywka =>
 
