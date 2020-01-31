@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "game_over.h"
 #include "extra.h"
 
@@ -32,7 +33,7 @@ char* game_over(sfRenderWindow* window,int Score_int,char* name)
     
     while(sfRenderWindow_isOpen(window))
     {
-	int len=str_length(name);
+	int len=strlen(name);
 	while(sfRenderWindow_pollEvent(window,&event))
 	{
 	    if(event.type==sfEvtClosed)sfRenderWindow_close(window);
@@ -40,7 +41,7 @@ char* game_over(sfRenderWindow* window,int Score_int,char* name)
 	    {
 		if(event.key.code==sfKeyUp)
 		{
-		    if(name[0]!=' '&&name[str_length(name)-1]!=' ')
+		    if(name[0]!=' '&&name[strlen(name)-1]!=' ')
 		    {
 			save_score(name,Score_int);
 			return name;
@@ -48,7 +49,7 @@ char* game_over(sfRenderWindow* window,int Score_int,char* name)
 		}
 		if(event.key.code==sfKeyBackspace)
 		{
-		    if(str_length(name)>0)
+		    if(strlen(name)>0)
 		    {
 			str_delete(name);
 			sfText_setString(Name,name);

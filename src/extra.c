@@ -70,22 +70,15 @@ sfVector2f vec2d(float x,float y)
     return vec;
 }
 
-int str_length(char* string)
-{
-    int i;
-    for(i=0;string[i]!='\0';i++);
-    return i;
-}
-
 void str_append(char* string,char c)
 {
-     string[str_length(string)]=c;
-     string[str_length(string)]='\0';
+     string[strlen(string)]=c;
+     string[strlen(string)]='\0';
 }
 
 void str_delete(char* string)
 { 
-    string[str_length(string)-1]='\0';
+    string[strlen(string)-1]='\0';
 }
 
 void save_score(char* name_src,int score_src)
