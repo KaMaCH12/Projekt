@@ -23,6 +23,13 @@ Aby skompilowac projekt można użyć
 make
 ```
 
+Instalacja CSFML i SFML =>
+
+SFML => https://github.com/SFML/SFML
+CSFML => https://github.com/SFML/CSFML
+
+Ewentualnie można skorzystać z instalacji paczki <b>libcsfml-dev</b> jesli jest on dostępny w odpowiednim dla dystrybucji Linuksa package-managerze.
+
 Rozgrywka =>
 
 Gra polega na osiągnięciu jak najlepszego wyniku.
