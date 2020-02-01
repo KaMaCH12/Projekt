@@ -1,4 +1,4 @@
-Projekt w C - Karol Machoś
+<b>Projekt w C - Karol Machoś</b>
 ```
      ____
     / ___| _ __   __ _  ___ ___
@@ -15,7 +15,7 @@ Projekt w C - Karol Machoś
 https://www.ascii-art-generator.org/
 
 
-Kompilacja =>
+<b>Kompilacja =></b>
 
 Projekt do kompilacji wymaga gcc 9.2.0, csfml 2.5 oraz sfml 2.5
 Aby skompilowac projekt można użyć
@@ -23,14 +23,14 @@ Aby skompilowac projekt można użyć
 make
 ```
 
-Instalacja CSFML i SFML =>
+<b>Instalacja CSFML i SFML =></b>
 
 SFML => https://github.com/SFML/SFML
 CSFML => https://github.com/SFML/CSFML
 
 Ewentualnie można skorzystać z instalacji paczki <b>libcsfml-dev</b> jesli jest on dostępny w odpowiednim dla dystrybucji Linuksa package-managerze.
 
-Rozgrywka =>
+<b>Rozgrywka =></b>
 
 Gra polega na osiągnięciu jak najlepszego wyniku.
 Wlecenie w asteroide powoduje koniec rozgrywki.
@@ -45,7 +45,7 @@ jednej kolizji z asteroidą.
 Po zakonczeniu rozgrywki gracz może wpisać swoją nazwę do tabeli wyników.
 Nazwa nie może zaczynać ani kończyć się spacją, oraz nie może być dłuższa niż 20 znaków.
 
-Sterowanie =>
+<b>Sterowanie =></b>
 
 Strzałka w górę aby wykonać skok w górę.
 Strzałka w dół aby oddać strzał rakietą (o ile aktualny stan amunicji to 1).
