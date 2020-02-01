@@ -86,8 +86,8 @@ void save_score(char* name_src,int score_src)
     if(strlen(name_src)==0)return;
     FILE* highscores;
     FILE* temp;
-    highscores=fopen("./data/highscores.txt","ar+");
-    temp=fopen("./data/temp.txt","w");
+    highscores=fopen("./data/highscores.csv","ar+");
+    temp=fopen("./data/temp.csv","w");
     char name[1000];
     char score[1000];
     char a='a';
@@ -121,7 +121,7 @@ void save_score(char* name_src,int score_src)
 	    {
 		fclose(highscores);
 		fclose(temp);
-		remove("./data/temp.txt");
+		remove("./data/temp.csv");
 		return;
 	    }
 	}
@@ -146,15 +146,15 @@ void save_score(char* name_src,int score_src)
     //podmiana temp i higscores
     fclose(highscores);
     fclose(temp);
-    remove("./data/highscores.txt");
-    rename("./data/temp.txt","./data/highscores.txt");
+    remove("./data/highscores.csv");
+    rename("./data/temp.csv","./data/highscores.csv");
     return;
 }
 
 void read_score(char* dst)
 {
     FILE* highscores;
-    highscores=fopen("./data/highscores.txt","ar+");
+    highscores=fopen("./data/highscores.csv","ar+");
     char a=fgetc(highscores);
     int i=0;
     int l=0;
