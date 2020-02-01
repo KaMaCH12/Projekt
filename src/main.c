@@ -47,6 +47,12 @@ int main()
 
     window=sfRenderWindow_create(mode,"Space Commander",sfClose,NULL);
     sfRenderWindow_setKeyRepeatEnabled(window,sfFalse);
+
+    inline void inicjalizacja_ikonki_okna()
+    {
+	sfImage* Icon=sfImage_createFromFile("./images/Icon.png");
+	sfRenderWindow_setIcon(window,sfImage_getSize(Icon).x,sfImage_getSize(Icon).y,sfImage_getPixelsPtr(Icon));
+    }
     
     inline void inicjalizacja_czcionki()
     {
@@ -118,6 +124,7 @@ int main()
 	object_texture[6]="./images/RocketFired.png";
     }
 
+    inicjalizacja_ikonki_okna();
     inicjalizacja_czcionki();
     inicjalizacja_title_screen();
     inicjalizacja_elementow_Highscores();
