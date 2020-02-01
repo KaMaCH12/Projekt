@@ -26,6 +26,9 @@
     sfClock* frame;
     sfClock* gametime;
 
+    //object_factory
+    char* object_texture[7];
+
     //game_over.c
     sfSprite* GameOverScreen;
     sfText* Name;
@@ -105,12 +108,23 @@ int main()
 	sfSprite_setTexture(Background4,sfTexture_createFromFile("./images/Background4.png",NULL),sfTrue);
     }
 
+    inline void inicjalizacja_object_texture()
+    {
+	object_texture[1]="./images/Asteroida1.png";
+	object_texture[2]="./images/Asteroida2.png";
+	object_texture[3]="./images/Asteroida3.png";
+	object_texture[4]="./images/Shield.png";
+	object_texture[5]="./images/Weapon.png";
+	object_texture[6]="./images/RocketFired.png";
+    }
+
     inicjalizacja_czcionki();
     inicjalizacja_title_screen();
     inicjalizacja_elementow_Highscores();
     inicjalizacja_elementow_Game();
     inicjalizacja_GameOver();
     inicjalizacja_tla();
+    inicjalizacja_object_texture();
 
     while(sfRenderWindow_isOpen(window))
     {

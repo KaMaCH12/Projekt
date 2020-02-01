@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "extra.h"
+#include "object_factory.h"
 
 player ship_new(sfVector2f position)
 {
@@ -30,37 +30,9 @@ object* make_object(int type,sfVector2f position,int speed,int rotation)
 {
     object* ROCK=malloc(sizeof(object));
     ROCK->spr=sfSprite_create();
-    switch(type)
-    {
-	case 1:
-	    ROCK->img=sfTexture_createFromFile("./images/Asteroida1.png",NULL);
-//	    sfSprite_setOrigin(ROCK->spr,vec2d(76/2,71/2));
-	    ROCK->type=1;
-	    break;
-	case 2:
-	    ROCK->img=sfTexture_createFromFile("./images/Asteroida2.png",NULL);
-//	    sfSprite_setOrigin(ROCK->spr,vec2d(75,50));
-	    ROCK->type=2;
-	    break;
-	case 3:
-	    ROCK->img=sfTexture_createFromFile("./images/Asteroida3.png",NULL);
-//	    sfSprite_setOrigin(ROCK->spr,vec2d(75,75));
-	    ROCK->type=3;
-	    break;
-	case 4:
-	    ROCK->img=sfTexture_createFromFile("./images/Shield.png",NULL);
-	    ROCK->type=4;
-	    break;
-	case 5:
-	    ROCK->img=sfTexture_createFromFile("./images/Weapon.png",NULL);
-	    ROCK->type=5;
-	    break;
-	case 6:
-	    ROCK->img=sfTexture_createFromFile("./images/RocketFired.png",NULL);
-	    ROCK->type=6;
-	    break;
-    }
     ROCK->Rspeed=rotation;
+    ROCK->img=sfTexture_createFromFile(object_texture[type],NULL);
+    ROCK->type=type;
     sfSprite_setRotation(ROCK->spr,rotation);
     sfSprite_setPosition(ROCK->spr,position);
     sfSprite_setTexture(ROCK->spr,ROCK->img,sfTrue);
