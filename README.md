@@ -89,5 +89,7 @@ Arrow DOWN fires your rocket (if you have any stored under your ship)
 </p>
 
 <h1>Screenshots<h1>
+<div>
 <img src="https://kamach12.github.io/images/SpaceCommanderScreen1.png" width=49%>
 <img src="https://kamach12.github.io/images/SpaceCommanderScreen2.png" width=49%>
+</div>
