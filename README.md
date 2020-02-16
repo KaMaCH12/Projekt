@@ -87,3 +87,6 @@ After crashing, you will be prompted to enter your name for the highscores table
 Arrow UP makes your ship jump up.<br>
 Arrow DOWN fires your rocket (if you have any stored under your ship)
 </p>
+
+<h1>Screenshots<h1>
+<img src="kamach12.github.io/images/SpaceCommanderScreen1.png">
