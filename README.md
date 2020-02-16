@@ -59,6 +59,7 @@ Strzałka w dół aby oddać strzał rakietą (o ile aktualny stan amunicji to 1
 <p>
 The game requires gcc 9.2.0, CSFML 2.5.0 and SFML 2.5.0 .
 To install the game you can use:
+
 ```
 make
 ```
