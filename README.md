@@ -76,9 +76,9 @@ You can also just use your native package-manager to install any package contain
 The goal of the game is to achieve the highest score posibble, by surviving the longest without crashing your ship against the asteroids.
 You can also catch 2 types of power'ups to make surving easier:
 
-The container with "W" on it -> If you crash with the this container and you'll have no rockets on your ship already, it will add one rocket to your ship. You can then fire this rocket on asteroids, in order to destroy them.
+The container with "W" on it -> If you crash with this container whilst having no rockets on your ship, it will add one rocket to your ship. You can use this rocket to destroy asteroids, by firing it at them.
 
-The container with "S" on it -> It's a shield. If you crash with this container, your ship whill be surroundend by a blue force field, thus making your ship capable of surviving one crash with an asteroid.
+The container with "S" on it -> It's a shield. If you crash with this container, your ship whill be surroundend by a blue force field, making your ship capable of surviving one crash with an asteroid.
 
 After crashing, you will be prompted to enter your name for the highscores table. If you won't enter any letters, your score won't be saved.
 </p>
