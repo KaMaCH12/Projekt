@@ -7,7 +7,7 @@
 #define gamespeed 9
 #define ColTolerance 500
 
-sfEvent event;
+extern sfEvent event;
 
 typedef struct Ship
 {

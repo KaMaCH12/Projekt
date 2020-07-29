@@ -1,15 +1,15 @@
 #include "extra.h"
 
-sfText* Score;
-sfSprite* Background1;
-sfSprite* Background2;
-sfSprite* Background3;
-sfSprite* Background4;
-sfSprite* ship_shield;
-sfSprite* ship_boom;
-sfSprite* ship_rocket;
-sfClock* frame;
-sfClock* gametime;
+extern sfText* Score;
+extern sfSprite* Background1;
+extern sfSprite* Background2;
+extern sfSprite* Background3;
+extern sfSprite* Background4;
+extern sfSprite* ship_shield;
+extern sfSprite* ship_boom;
+extern sfSprite* ship_rocket;
+extern sfClock* frame;
+extern sfClock* gametime;
 
 
 //zarzadzanie graczem

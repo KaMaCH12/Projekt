@@ -1,17 +1,17 @@
 #include <SFML/Graphics.h>
 
-sfEvent event;
+extern sfEvent event;
 
-sfSprite* Background1;
-sfSprite* Background2;
-sfSprite* Background3;
+extern sfSprite* Background1;
+extern sfSprite* Background2;
+extern sfSprite* Background3;
 
-sfSprite* GameOverScreen;
-sfText* Name;
-sfText* Score;
-sfText* Warning;
-sfClock* WarningTimer;
-sfClock* CursorTimer;
+extern sfSprite* GameOverScreen;
+extern sfText* Name;
+extern sfText* Score;
+extern sfText* Warning;
+extern sfClock* WarningTimer;
+extern sfClock* CursorTimer;
 
 sfVector2f vec2d(float,float);
 
